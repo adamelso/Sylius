@@ -32,6 +32,7 @@
         "sylius/core":                    "0.12.*@dev",
         "sylius/addressing-bundle":       "0.12.*@dev",
         "sylius/api-bundle":              "0.12.*@dev",
+        "sylius/archetype-bundle":        "0.12.*@dev",
         "sylius/cart-bundle":             "0.12.*@dev",
         "sylius/contact-bundle":          "0.12.*@dev",
         "sylius/content-bundle":          "0.12.*@dev",

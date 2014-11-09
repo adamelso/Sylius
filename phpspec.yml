@@ -26,6 +26,7 @@ suites:
     Variation        : { namespace: Sylius, spec_path: src/Sylius/Component/Variation }
 
     AddressingBundle : { namespace: Sylius, spec_path: src/Sylius/Bundle/AddressingBundle }
+    ArchetypeBundle  : { namespace: Sylius, spec_path: src/Sylius/Bundle/ArchetypeBundle }
     AttributeBundle  : { namespace: Sylius, spec_path: src/Sylius/Bundle/AttributeBundle }
     CartBundle       : { namespace: Sylius, spec_path: src/Sylius/Bundle/CartBundle }
     CoreBundle       : { namespace: Sylius, spec_path: src/Sylius/Bundle/CoreBundle }

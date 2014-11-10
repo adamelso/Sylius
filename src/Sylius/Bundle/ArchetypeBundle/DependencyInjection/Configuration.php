@@ -36,7 +36,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->addDefaultsIfNotSet()
             ->children()
-                ->scalarNode('driver')->defaultNull()->end()
+                ->scalarNode('driver')->defaultValue(\Sylius\Bundle\ResourceBundle\SyliusResourceBundle::DRIVER_DOCTRINE_ORM)->end()
             ->end()
         ;
 

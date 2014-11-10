@@ -21,7 +21,7 @@
     </parameters>
 
     <services>
-        <service id="sylius.form.type.archetype_derivative" class="%sylius.form.type.archetype_derivative.class%">
+        <service id="sylius.form.type.archetype" class="%sylius.form.type.archetype.class%">
             <argument>%sylius.model.archetype.class%</argument>
             <argument>%sylius.validation_group.archetype%</argument>
             <tag name="form.type" alias="sylius_archetype" />

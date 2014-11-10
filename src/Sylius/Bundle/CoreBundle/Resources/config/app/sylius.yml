@@ -73,6 +73,8 @@ sylius_product:
             repository: Sylius\Bundle\CoreBundle\Doctrine\ORM\ProductRepository
             form: Sylius\Bundle\CoreBundle\Form\Type\ProductType
 
+sylius_archetype: ~
+
 sylius_attribute: ~
 
 sylius_variation:

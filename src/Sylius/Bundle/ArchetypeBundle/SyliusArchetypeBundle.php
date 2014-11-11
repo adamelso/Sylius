@@ -34,7 +34,7 @@ class SyliusArchetypeBundle extends AbstractResourceBundle
      */
     protected function getBundlePrefix()
     {
-        return 'sylius_product';
+        return 'sylius_archetype';
     }
 
     /**

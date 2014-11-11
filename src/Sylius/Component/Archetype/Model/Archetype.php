@@ -4,8 +4,9 @@ namespace Sylius\Component\Archetype\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Sylius\Component\Attribute\Model\AttributeInterface;
-use Sylius\Component\Variation\Model\OptionInterface;
+use Sylius\Component\Attribute\Model\AttributeInterface as BaseAttributeInterface;
+use Sylius\Component\Variation\Model\OptionInterface as BaseOptionInterface;
+
 
 class Archetype implements ArchetypeInterface
 {
@@ -80,7 +81,7 @@ class Archetype implements ArchetypeInterface
     /**
      * {@inheritDoc}
      */
-    public function addAttribute(AttributeInterface $attribute)
+    public function addAttribute(BaseAttributeInterface $attribute)
     {
         $this->attributes->add($attribute);
     }
@@ -88,7 +89,7 @@ class Archetype implements ArchetypeInterface
     /**
      * {@inheritDoc}
      */
-    public function removeAttribute(AttributeInterface $attribute)
+    public function removeAttribute(BaseAttributeInterface $attribute)
     {
         $this->attributes->removeElement($attribute);
     }
@@ -96,7 +97,7 @@ class Archetype implements ArchetypeInterface
     /**
      * {@inheritDoc}
      */
-    public function hasAttribute(AttributeInterface $attribute)
+    public function hasAttribute(BaseAttributeInterface $attribute)
     {
         return $this->attributes->contains($attribute);
     }
@@ -120,7 +121,7 @@ class Archetype implements ArchetypeInterface
     /**
      * {@inheritDoc}
      */
-    public function addOption(OptionInterface $option)
+    public function addOption(BaseOptionInterface $option)
     {
         $this->options->add($option);
     }
@@ -128,7 +129,7 @@ class Archetype implements ArchetypeInterface
     /**
      * {@inheritDoc}
      */
-    public function removeOption(OptionInterface $option)
+    public function removeOption(BaseOptionInterface $option)
     {
         $this->options->removeElement($option);
     }
@@ -136,7 +137,7 @@ class Archetype implements ArchetypeInterface
     /**
      * {@inheritDoc}
      */
-    public function hasOption(OptionInterface $option)
+    public function hasOption(BaseOptionInterface $option)
     {
         return $this->options->contains($option);
     }

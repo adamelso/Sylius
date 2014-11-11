@@ -43,6 +43,7 @@ class SyliusArchetypeExtension extends AbstractResourceExtension implements Prep
         $config = $this->processConfiguration(new Configuration(), $container->getExtensionConfig($this->getAlias()));
 
         $this->prependAttribute($container, $config);
+        $this->prependVariation($container, $config);
     }
 
     /**
@@ -70,4 +71,33 @@ class SyliusArchetypeExtension extends AbstractResourceExtension implements Prep
         );
     }
 
+    /**
+     * @param ContainerBuilder $container
+     * @param array            $config
+     */
+    private function prependVariation(ContainerBuilder $container, array $config)
+    {
+        if (!$container->hasExtension('sylius_variation')) {
+            return;
+        }
+
+        $container->prependExtensionConfig('sylius_variation', array(
+            'classes' => array(
+                'archetype' => array(
+                    'variable'     => $config['classes']['archetype']['model'],
+                    'variant'      => array(
+                        'model'      => 'Sylius\Component\Archetype\Model\Variant',
+//                        'controller' => 'Sylius\Bundle\ProductBundle\Controller\VariantController',
+//                        'form'       => 'Sylius\Bundle\ProductBundle\Form\Type\VariantType'
+                    ),
+                    'option'       => array(
+                        'model' => 'Sylius\Component\Archetype\Model\Option'
+                    ),
+                    'option_value' => array(
+                        'model' => 'Sylius\Component\Archetype\Model\OptionValue'
+                    ),
+                )
+            ))
+        );
+    }
 }

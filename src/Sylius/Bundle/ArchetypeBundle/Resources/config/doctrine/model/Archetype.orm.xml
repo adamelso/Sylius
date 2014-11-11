@@ -22,7 +22,7 @@
         <field name="name" column="name" type="string" />
 
         <many-to-many field="attributes" target-entity="Sylius\Component\Archetype\Model\AttributeInterface">
-            <join-table name="sylius_archetype_attribute">
+            <join-table name="sylius_archetype_derivative_attribute">
                 <join-columns>
                     <join-column name="archetype_id" referenced-column-name="id" nullable="false" unique="false" />
                 </join-columns>
@@ -33,7 +33,7 @@
         </many-to-many>
 
         <many-to-many field="options" target-entity="Sylius\Component\Archetype\Model\OptionInterface">
-            <join-table name="sylius_archetype_option">
+            <join-table name="sylius_archetype_derivative_option">
                 <join-columns>
                     <join-column name="archetype_id" referenced-column-name="id" nullable="false" unique="false" />
                 </join-columns>

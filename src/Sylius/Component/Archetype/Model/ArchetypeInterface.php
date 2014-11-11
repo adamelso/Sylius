@@ -3,8 +3,8 @@
 namespace Sylius\Component\Archetype\Model;
 
 use Doctrine\Common\Collections\Collection;
-use Sylius\Component\Attribute\Model\AttributeInterface;
-use Sylius\Component\Variation\Model\OptionInterface;
+use Sylius\Component\Attribute\Model\AttributeInterface as BaseAttributeInterface;
+use Sylius\Component\Variation\Model\OptionInterface as BaseOptionInterface;
 
 interface ArchetypeInterface
 {
@@ -26,74 +26,74 @@ interface ArchetypeInterface
     /**
      * Returns all prototype attributes.
      *
-     * @return Collection|AttributeInterface[]
+     * @return Collection|BaseAttributeInterface[]
      */
     public function getAttributes();
 
     /**
      * Sets all prototype attributes.
      *
-     * @param Collection $attributes
+     * @param Collection|BaseAttributeInterface[] $attributes
      */
     public function setAttributes(Collection $attributes);
 
     /**
      * Adds attribute.
      *
-     * @param AttributeInterface $attribute
+     * @param BaseAttributeInterface $attribute
      */
-    public function addAttribute(AttributeInterface $attribute);
+    public function addAttribute(BaseAttributeInterface $attribute);
 
     /**
      * Removes attribute from prototype.
      *
-     * @param AttributeInterface $attribute
+     * @param BaseAttributeInterface $attribute
      */
-    public function removeAttribute(AttributeInterface $attribute);
+    public function removeAttribute(BaseAttributeInterface $attribute);
 
     /**
      * Checks whether prototype has given attribute.
      *
-     * @param AttributeInterface $attribute
+     * @param BaseAttributeInterface $attribute
      *
      * @return Boolean
      */
-    public function hasAttribute(AttributeInterface $attribute);
+    public function hasAttribute(BaseAttributeInterface $attribute);
 
     /**
      * Returns all prototype options.
      *
-     * @return Collection|OptionInterface[]
+     * @return Collection|BaseOptionInterface[]
      */
     public function getOptions();
 
     /**
      * Sets all prototype options.
      *
-     * @param Collection $options
+     * @param Collection|BaseOptionInterface[] $options
      */
     public function setOptions(Collection $options);
 
     /**
      * Adds option.
      *
-     * @param OptionInterface $option
+     * @param BaseOptionInterface $option
      */
-    public function addOption(OptionInterface $option);
+    public function addOption(BaseOptionInterface $option);
 
     /**
      * Removes option from prototype.
      *
-     * @param OptionInterface $option
+     * @param BaseOptionInterface $option
      */
-    public function removeOption(OptionInterface $option);
+    public function removeOption(BaseOptionInterface $option);
 
     /**
      * Checks whether prototype has given option.
      *
-     * @param OptionInterface $option
+     * @param BaseOptionInterface $option
      *
      * @return Boolean
      */
-    public function hasOption(OptionInterface $option);
+    public function hasOption(BaseOptionInterface $option);
 }

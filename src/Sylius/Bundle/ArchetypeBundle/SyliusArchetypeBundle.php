@@ -43,7 +43,12 @@ class SyliusArchetypeBundle extends AbstractResourceBundle
     protected function getModelInterfaces()
     {
         return array(
-            'Sylius\Component\Archetype\Model\ArchetypeInterface' => 'sylius.model.archetype.class',
+            'Sylius\Component\Archetype\Model\ArchetypeInterface'      => 'sylius.model.archetype.class',
+            'Sylius\Component\Archetype\Model\AttributeInterface'      => 'sylius.model.attribute.class',
+//            'Sylius\Component\Archetype\Model\AttributeValueInterface' => 'sylius.model.archetype_attribute_value.class',
+//            'Sylius\Component\Archetype\Model\VariantInterface'        => 'sylius.model.archetype_variant.class',
+//            'Sylius\Component\Archetype\Model\OptionInterface'         => 'sylius.model.archetype_option.class',
+//            'Sylius\Component\Archetype\Model\OptionValueInterface'    => 'sylius.model.archetype_option_value.class',
         );
     }
 

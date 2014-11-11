@@ -41,5 +41,33 @@ class SyliusArchetypeExtension extends AbstractResourceExtension implements Prep
     public function prepend(ContainerBuilder $container)
     {
         $config = $this->processConfiguration(new Configuration(), $container->getExtensionConfig($this->getAlias()));
+
+        $this->prependAttribute($container, $config);
     }
+
+    /**
+     * @param ContainerBuilder $container
+     * @param array            $config
+     */
+    private function prependAttribute(ContainerBuilder $container, array $config)
+    {
+        if (!$container->hasExtension('sylius_attribute')) {
+            return;
+        }
+
+        $container->prependExtensionConfig('sylius_attribute', array(
+            'classes' => array(
+                'archetype' => array(
+                    'subject'         => $config['classes']['archetype']['model'],
+                    'attribute'       => array(
+                        'model' => 'Sylius\Component\Archetype\Model\Attribute'
+                    ),
+                    'attribute_value' => array(
+                        'model' => 'Sylius\Component\Archetype\Model\AttributeValue'
+                    ),
+                )
+            ))
+        );
+    }
+
 }

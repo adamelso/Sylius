@@ -21,7 +21,7 @@
 
         <field name="name" column="name" type="string" />
 
-        <many-to-many field="attributes" target-entity="Sylius\Component\Attribute\Model\AttributeInterface">
+        <many-to-many field="attributes" target-entity="Sylius\Component\Archetype\Model\AttributeInterface">
             <join-table name="sylius_archetype_attribute">
                 <join-columns>
                     <join-column name="archetype_id" referenced-column-name="id" nullable="false" unique="false" />
@@ -32,7 +32,7 @@
             </join-table>
         </many-to-many>
 
-        <many-to-many field="options" target-entity="Sylius\Component\Variation\Model\OptionInterface">
+        <many-to-many field="options" target-entity="Sylius\Component\Archetype\Model\OptionInterface">
             <join-table name="sylius_archetype_option">
                 <join-columns>
                     <join-column name="archetype_id" referenced-column-name="id" nullable="false" unique="false" />

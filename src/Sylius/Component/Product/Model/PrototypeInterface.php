@@ -14,6 +14,8 @@ namespace Sylius\Component\Product\Model;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Archetype\Model\ArchetypeInterface;
 use Sylius\Component\Resource\Model\TimestampableInterface;
+use Sylius\Component\Attribute\Model\AttributeInterface as BaseAttributeInterface;
+use Sylius\Component\Variation\Model\OptionInterface as BaseOptionInterface;
 
 /**
  * Used to generate full product form.
@@ -55,25 +57,25 @@ interface PrototypeInterface extends TimestampableInterface, ArchetypeInterface
     /**
      * Adds attribute.
      *
-     * @param AttributeInterface $attribute
+     * @param BaseAttributeInterface $attribute
      */
-    public function addAttribute(AttributeInterface $attribute);
+    public function addAttribute(BaseAttributeInterface $attribute);
 
     /**
      * Removes attribute from prototype.
      *
-     * @param AttributeInterface $attribute
+     * @param BaseAttributeInterface $attribute
      */
-    public function removeAttribute(AttributeInterface $attribute);
+    public function removeAttribute(BaseAttributeInterface $attribute);
 
     /**
      * Checks whether prototype has given attribute.
      *
-     * @param AttributeInterface $attribute
+     * @param BaseAttributeInterface $attribute
      *
      * @return Boolean
      */
-    public function hasAttribute(AttributeInterface $attribute);
+    public function hasAttribute(BaseAttributeInterface $attribute);
 
     /**
      * Returns all prototype options.
@@ -92,23 +94,23 @@ interface PrototypeInterface extends TimestampableInterface, ArchetypeInterface
     /**
      * Adds option.
      *
-     * @param OptionInterface $option
+     * @param BaseOptionInterface $option
      */
-    public function addOption(OptionInterface $option);
+    public function addOption(BaseOptionInterface $option);
 
     /**
      * Removes option from prototype.
      *
-     * @param OptionInterface $option
+     * @param BaseOptionInterface $option
      */
-    public function removeOption(OptionInterface $option);
+    public function removeOption(BaseOptionInterface $option);
 
     /**
      * Checks whether prototype has given option.
      *
-     * @param OptionInterface $option
+     * @param BaseOptionInterface $option
      *
      * @return Boolean
      */
-    public function hasOption(OptionInterface $option);
+    public function hasOption(BaseOptionInterface $option);
 }

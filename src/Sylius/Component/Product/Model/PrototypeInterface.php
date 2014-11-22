@@ -12,6 +12,7 @@
 namespace Sylius\Component\Product\Model;
 
 use Doctrine\Common\Collections\Collection;
+use Sylius\Component\Archetype\Model\ArchetypeInterface;
 use Sylius\Component\Resource\Model\TimestampableInterface;
 
 /**
@@ -20,7 +21,7 @@ use Sylius\Component\Resource\Model\TimestampableInterface;
  *
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-interface PrototypeInterface extends TimestampableInterface
+interface PrototypeInterface extends TimestampableInterface, ArchetypeInterface
 {
     /**
      * Get name, in most cases it will be displayed by user only in backend.

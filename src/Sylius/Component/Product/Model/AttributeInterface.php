@@ -11,7 +11,7 @@
 
 namespace Sylius\Component\Product\Model;
 
-use Sylius\Component\Attribute\Model\AttributeInterface as BaseAttributeInterface;
+use Sylius\Component\Archetype\Model\AttributeInterface as BaseAttributeInterface;
 
 /**
  * Product attributes interface.

@@ -13,6 +13,8 @@ namespace Sylius\Component\Product\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Sylius\Component\Attribute\Model\AttributeInterface as BaseAttributeInterface;
+use Sylius\Component\Variation\Model\OptionInterface as BaseOptionInterface;
 
 /**
  * Default prototype implementation.
@@ -120,7 +122,7 @@ class Prototype implements PrototypeInterface
     /**
      * {@inheritdoc}
      */
-    public function addAttribute(AttributeInterface $attribute)
+    public function addAttribute(BaseAttributeInterface $attribute)
     {
         if (!$this->hasAttribute($attribute)) {
             $this->attributes->add($attribute);
@@ -132,7 +134,7 @@ class Prototype implements PrototypeInterface
     /**
      * {@inheritdoc}
      */
-    public function removeAttribute(AttributeInterface $attribute)
+    public function removeAttribute(BaseAttributeInterface $attribute)
     {
         if ($this->hasAttribute($attribute)) {
             $this->attributes->removeElement($attribute);
@@ -144,7 +146,7 @@ class Prototype implements PrototypeInterface
     /**
      * {@inheritdoc}
      */
-    public function hasAttribute(AttributeInterface $attribute)
+    public function hasAttribute(BaseAttributeInterface $attribute)
     {
         return $this->attributes->contains($attribute);
     }
@@ -170,7 +172,7 @@ class Prototype implements PrototypeInterface
     /**
      * {@inheritdoc}
      */
-    public function addOption(OptionInterface $option)
+    public function addOption(BaseOptionInterface $option)
     {
         if (!$this->hasOption($option)) {
             $this->options->add($option);
@@ -182,7 +184,7 @@ class Prototype implements PrototypeInterface
     /**
      * {@inheritdoc}
      */
-    public function removeOption(OptionInterface $option)
+    public function removeOption(BaseOptionInterface $option)
     {
         if ($this->hasOption($option)) {
             $this->options->removeElement($option);
@@ -194,7 +196,7 @@ class Prototype implements PrototypeInterface
     /**
      * {@inheritdoc}
      */
-    public function hasOption(OptionInterface $option)
+    public function hasOption(BaseOptionInterface $option)
     {
         return $this->options->contains($option);
     }

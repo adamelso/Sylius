@@ -93,7 +93,22 @@ interface ArchetypeInterface
      *
      * @param BaseOptionInterface $option
      *
-     * @return Boolean
+     * @return boolean
      */
     public function hasOption(BaseOptionInterface $option);
+
+    /**
+     * @return boolean
+     */
+    public function hasParent();
+
+    /**
+     * @param ArchetypeInterface $parent
+     */
+    public function setParent(ArchetypeInterface $parent);
+
+    /**
+     * @return ArchetypeInterface
+     */
+    public function getParent();
 }

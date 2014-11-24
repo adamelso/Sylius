@@ -32,6 +32,11 @@ class Archetype implements ArchetypeInterface
      */
     private $options;
 
+    /**
+     * @var ArchetypeInterface
+     */
+    private $parent;
+
     public function __construct()
     {
         $this->attributes = new ArrayCollection();
@@ -140,5 +145,29 @@ class Archetype implements ArchetypeInterface
     public function hasOption(BaseOptionInterface $option)
     {
         return $this->options->contains($option);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function hasParent()
+    {
+        return null !== $this->parent;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setParent(ArchetypeInterface $parent)
+    {
+        $this->parent = $parent;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getParent()
+    {
+        return $this->parent;
     }
 }

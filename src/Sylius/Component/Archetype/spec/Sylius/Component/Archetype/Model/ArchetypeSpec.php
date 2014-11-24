@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
+use Sylius\Component\Archetype\Model\ArchetypeInterface;
 use Sylius\Component\Attribute\Model\AttributeInterface;
 use Sylius\Component\Variation\Model\OptionInterface;
 
@@ -87,5 +88,17 @@ class ArchetypeSpec extends ObjectBehavior
 
         $this->removeOption($attribute);
         $this->hasOption($attribute)->shouldReturn(false);
+    }
+
+    function it_has_no_parent_by_default()
+    {
+        $this->hasParent()->shouldReturn(false);
+    }
+
+    function its_parent_is_mutable(ArchetypeInterface $parent)
+    {
+        $this->setParent($parent);
+        $this->getParent()->shouldReturn($parent);
+        $this->hasParent()->shouldReturn(true);
     }
 }

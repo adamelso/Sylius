@@ -14,6 +14,7 @@ namespace spec\Sylius\Component\Product\Model;
 use Doctrine\Common\Collections\Collection;
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Product\Model\AttributeInterface;
+use Sylius\Component\Product\Model\PrototypeInterface;
 
 /**
  * @author Paweł Jędrzejewski <pawel@sylius.org>
@@ -96,6 +97,18 @@ class PrototypeSpec extends ObjectBehavior
 
         $this->setUpdatedAt($date);
         $this->getUpdatedAt()->shouldReturn($date);
+    }
+
+    function it_has_no_parent_by_default()
+    {
+        $this->hasParent()->shouldReturn(false);
+    }
+
+    function its_parent_is_mutable(PrototypeInterface $parent)
+    {
+        $this->setParent($parent);
+        $this->getParent()->shouldReturn($parent);
+        $this->hasParent()->shouldReturn(true);
     }
 
     function it_has_fluent_interface(Collection $attributes, AttributeInterface $attribute)

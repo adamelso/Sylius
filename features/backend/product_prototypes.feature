@@ -8,18 +8,26 @@ Feature: Product prototypes
         Given there is default currency configured
           And I am logged in as administrator
           And there are following options:
-            | name          | presentation | values                |
-            | T-Shirt color | Color        | Red, Blue, Green      |
-            | T-Shirt size  | Size         | S, M, L               |
-            | Bag color     | Color        | Black, Light balsamic |
-          And there are following attributes:
-            | name               | presentation   |
-            | T-Shirt collection | Collection     |
-            | T-Shirt fabric     | T-Shirt fabric |
-            | Bag material       | Material       |
+            | name             | presentation | values                     |
+            | T-Shirt color    | Color        | Red, Blue, Green           |
+            | T-Shirt size     | Size         | S, M, L                    |
+            | Bag color        | Color        | Black, Light balsamic      |
+            | Beverage size    | Size         | Tall, Grande, Venti        |
+            | Beverage milk    | Milk         | None, Whole, Skinny, Soya  |
+            | Coffee Variety   | Variety      | Colombian, Ethiopian       |
+      And there are following attributes:
+            | name                  | presentation   |
+            | T-Shirt collection    | Collection     |
+            | T-Shirt fabric        | T-Shirt fabric |
+            | Bag material          | Material       |
+            | Beverage calories     | Calories       |
+            | Coffee caffeine       | Caffeine       |
           And there is prototype "T-Shirt" with following configuration:
             | options    | T-Shirt color, T-Shirt size        |
             | attributes | T-Shirt collection, T-Shirt fabric |
+          And there is prototype "Beverage" with following configuration:
+            | options    | Beverage size, Beverage milk       |
+            | attributes | Beverage calories                  |
 
     Scenario: Seeing index of all prototypes
         Given I am on the dashboard page
@@ -94,7 +102,17 @@ Feature: Product prototypes
          Then I should be on the product prototype index page
           And I should see "Prototype has been successfully updated."
 
-    @javascript
+    Scenario: Inheriting the properties from parent prototype to a child prototype
+        Given I am on the product prototype creation page
+         When I fill in "Name" with "Coffee"
+          And I select "Beverage" from "Parent"
+          And I select "Coffee variety" from "Options"
+          And I select "Coffee caffeine" from "Attributes"
+          And I press "Create"
+         Then I should be on the product prototype index page
+          And I should see "Prototype has been successfully created."
+
+  @javascript
     Scenario: Deleted prototype disappears from the list
         Given I am on the product prototype index page
          When I click "delete" near "T-Shirt"

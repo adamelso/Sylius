@@ -44,6 +44,11 @@ class PrototypeTypeSpec extends ObjectBehavior
         ;
 
         $builder
+            ->add('parent', 'choice', Argument::any())
+            ->willReturn($builder)
+        ;
+
+        $builder
             ->add('attributes', 'sylius_product_attribute_choice', Argument::any())
             ->willReturn($builder)
         ;

@@ -11,8 +11,7 @@
 
 -->
 
-<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
-        >
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
 
     <mapped-superclass name="Sylius\Component\Archetype\Model\Attribute" table="sylius_archetype_attribute">
     </mapped-superclass>

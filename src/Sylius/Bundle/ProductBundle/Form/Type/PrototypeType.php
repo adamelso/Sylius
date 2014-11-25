@@ -11,7 +11,7 @@
 
 namespace Sylius\Bundle\ProductBundle\Form\Type;
 
-use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use Sylius\Bundle\ArchetypeBundle\Form\Type\ArchetypeType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
@@ -19,28 +19,14 @@ use Symfony\Component\Form\FormBuilderInterface;
  *
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-class PrototypeType extends AbstractResourceType
+class PrototypeType extends ArchetypeType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('name', 'text', array(
-                'label' => 'sylius.form.product_prototype.name'
-            ))
-            ->add('attributes', 'sylius_product_attribute_choice', array(
-                'required' => false,
-                'multiple' => true,
-                'label'    => 'sylius.form.product_prototype.attributes'
-            ))
-            ->add('options', 'sylius_product_option_choice', array(
-                'required' => false,
-                'multiple' => true,
-                'label'    => 'sylius.form.product_prototype.options'
-            ))
-        ;
+        parent::buildForm($builder, $options);
     }
 
     /**

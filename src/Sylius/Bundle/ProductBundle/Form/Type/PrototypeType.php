@@ -32,7 +32,8 @@ class PrototypeType extends ArchetypeType
             ))
             ->add('parent', 'sylius_product_prototype_parent_choice', array(
                 'required' => false,
-                'label' => 'sylius.form.product_prototype.parent' // @todo add translations
+                'label' => 'sylius.form.product_prototype.parent',
+                'property' => 'name'
             ))
             ->add('attributes', 'sylius_product_attribute_choice', array(
                 'required' => false,

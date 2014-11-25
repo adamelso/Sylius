@@ -12,7 +12,9 @@
 namespace Sylius\Bundle\ProductBundle\DependencyInjection;
 
 use Sylius\Bundle\ResourceBundle\DependencyInjection\AbstractResourceExtension;
+use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
 /**
@@ -44,6 +46,8 @@ class SyliusProductExtension extends AbstractResourceExtension implements Prepen
 
         $this->prependAttribute($container, $config);
         $this->prependVariation($container, $config);
+
+        $this->createPrototypeServices($container, $config['driver']);
     }
 
     /**
@@ -99,5 +103,28 @@ class SyliusProductExtension extends AbstractResourceExtension implements Prepen
                 )
             ))
         );
+    }
+
+    /**
+     * Create services for product prototypes.
+     *
+     * @param ContainerBuilder $container
+     * @param string           $driver
+     */
+    private function createPrototypeServices(ContainerBuilder $container, $driver)
+    {
+        $choiceTypeClasses = array(
+            SyliusResourceBundle::DRIVER_DOCTRINE_ORM => 'Sylius\Bundle\ProductBundle\Form\Type\PrototypeEntityChoiceType'
+        );
+
+        $alias = 'sylius_product_prototype_parent_choice';
+
+        $prototypeChoiceFormType = new Definition($choiceTypeClasses[$driver]);
+        $prototypeChoiceFormType
+            ->setArguments(array('Sylius\Component\Product\Model\Product'))
+            ->addTag('form.type', array('alias' => $alias))
+        ;
+
+        $container->setDefinition('sylius.form.type.'.$alias, $prototypeChoiceFormType);
     }
 }

@@ -44,12 +44,17 @@ class ArchetypeTypeSpec extends ObjectBehavior
         ;
 
         $builder
-            ->add('attributes', 'sylius_product_attribute_choice', Argument::any())
+            ->add('parent', 'sylius_archetype_parent_choice', Argument::any())
             ->willReturn($builder)
         ;
 
         $builder
-            ->add('options', 'sylius_product_option_choice', Argument::any())
+            ->add('attributes', 'sylius_archetype_attribute_choice', Argument::any())
+            ->willReturn($builder)
+        ;
+
+        $builder
+            ->add('options', 'sylius_archetype_option_choice', Argument::any())
             ->willReturn($builder)
         ;
 

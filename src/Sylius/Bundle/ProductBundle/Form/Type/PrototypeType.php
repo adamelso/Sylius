@@ -26,7 +26,25 @@ class PrototypeType extends ArchetypeType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        parent::buildForm($builder, $options);
+        $builder
+            ->add('name', 'text', array(
+                'label' => 'sylius.form.product_prototype.name'
+            ))
+            ->add('parent', 'sylius_product_prototype_parent_choice', array(
+                'required' => false,
+                'label' => 'sylius.form.product_prototype.parent' // @todo add translations
+            ))
+            ->add('attributes', 'sylius_product_attribute_choice', array(
+                'required' => false,
+                'multiple' => true,
+                'label'    => 'sylius.form.product_prototype.attributes'
+            ))
+            ->add('options', 'sylius_product_option_choice', array(
+                'required' => false,
+                'multiple' => true,
+                'label'    => 'sylius.form.product_prototype.options'
+            ))
+        ;
     }
 
     /**

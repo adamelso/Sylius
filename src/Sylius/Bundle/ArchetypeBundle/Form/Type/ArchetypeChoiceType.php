@@ -64,6 +64,6 @@ abstract class ArchetypeChoiceType extends AbstractType
      */
     public function getName()
     {
-        return sprintf('sylius_%s_parent_choice', $this->subjectName);
+        return sprintf('sylius_%s_archetype_parent_choice', $this->subjectName);
     }
 }

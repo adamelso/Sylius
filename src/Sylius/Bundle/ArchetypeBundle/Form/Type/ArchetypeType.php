@@ -30,18 +30,18 @@ class ArchetypeType extends AbstractResourceType
             ->add('name', 'text', array(
                 'label' => 'sylius.form.archetype.name'
             ))
-            ->add('parent', 'sylius_product_parent_choice', array(
+            ->add('parent', 'sylius_archetype_parent_choice', array(
                 'required' => false,
                 'label' => 'sylius.form.archetype.parent' // @todo add translations
             ))
             /** @todo  */
-            ->add('attributes', 'sylius_product_attribute_choice', array(
+            ->add('attributes', 'sylius_archetype_attribute_choice', array(
                 'required' => false,
                 'multiple' => true,
                 'label'    => 'sylius.form.archetype.attributes' /** @todo add translation */
             ))
             /** @todo */
-            ->add('options', 'sylius_product_option_choice', array(
+            ->add('options', 'sylius_archetype_option_choice', array(
                 'required' => false,
                 'multiple' => true,
                 'label'    => 'sylius.form.archetype.options' /** @todo add translation */

@@ -4,9 +4,10 @@ namespace Sylius\Component\Archetype\Model;
 
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Attribute\Model\AttributeInterface as BaseAttributeInterface;
+use Sylius\Component\Resource\Model\TimestampableInterface;
 use Sylius\Component\Variation\Model\OptionInterface as BaseOptionInterface;
 
-interface ArchetypeInterface
+interface ArchetypeInterface extends TimestampableInterface
 {
     /**
      * Get name, in most cases it will be displayed by user only in backend.
@@ -103,12 +104,49 @@ interface ArchetypeInterface
     public function hasParent();
 
     /**
-     * @param ArchetypeInterface $parent
+     * @param null|ArchetypeInterface $parent
      */
-    public function setParent(ArchetypeInterface $parent);
+    public function setParent(ArchetypeInterface $parent = null);
 
     /**
-     * @return ArchetypeInterface
+     * @return null|ArchetypeInterface
      */
     public function getParent();
+
+    /**
+     * Get child archetypes.
+     *
+     * @return Collection|ArchetypeInterface[]
+     */
+    public function getChildren();
+
+    /**
+     * Has child archetype?
+     *
+     * @param ArchetypeInterface $archetype
+     *
+     * @return boolean
+     */
+    public function hasChild(ArchetypeInterface $archetype);
+
+    /**
+     * Add child archetype.
+     *
+     * @param ArchetypeInterface $archetype
+     */
+    public function addChild(ArchetypeInterface $archetype);
+
+    /**
+     * Remove child archetype.
+     *
+     * @param ArchetypeInterface $archetype
+     */
+    public function removeChild(ArchetypeInterface $archetype);
+
+    public function getLeft();
+    public function setLeft($left);
+    public function getRight();
+    public function setRight($right);
+    public function getLevel();
+    public function setLevel($level);
 }

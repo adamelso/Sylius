@@ -47,6 +47,11 @@ class PrototypeSpec extends ObjectBehavior
         $this->getName()->shouldReturn('T-Shirt size');
     }
 
+    function its_subject_is_a_basic_Sylius_product_by_default()
+    {
+        $this->getSubject()->shouldReturn('Sylius\Component\Product\Model\ProductInterface');
+    }
+
     function it_initializes_attribute_collection_by_default()
     {
         $this->getAttributes()->shouldHaveType('Doctrine\Common\Collections\Collection');

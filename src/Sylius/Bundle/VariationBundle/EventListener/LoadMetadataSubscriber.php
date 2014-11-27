@@ -85,18 +85,40 @@ class LoadMetadataSubscriber implements EventSubscriber
                 continue;
             }
 
-            $metadata->mapManyToOne(array(
-                'fieldName'    => 'option',
+            $mapping = array(
+                'fieldName' => 'option',
                 'targetEntity' => $class['option']['model'],
-                'inversedBy'   => 'values',
-                'joinColumns'  => array(array(
-                    'name'                 => 'option_id',
+                'inversedBy' => 'values',
+                'joinColumns' => array(array(
+                    'name' => 'option_id',
                     'referencedColumnName' => 'id',
-                    'nullable'             => false,
-                    'onDelete'             => 'CASCADE'
+                    'nullable' => false,
+                    'onDelete' => 'CASCADE'
                 ))
-            ));
+            );
+
+            if ($metadata->hasAssociation($mapping['fieldName'])) {
+                $this->overrideManyToOneAssociationMapping($metadata, $mapping);
+            } else {
+                $metadata->mapManyToOne($mapping);
+            }
         }
+    }
+
+    /**
+     * @param ClassMetadataInfo|ClassMetadata $metadata
+     * @param array                           $mapping
+     */
+    private function overrideManyToOneAssociationMapping(ClassMetadataInfo $metadata, array $mapping)
+    {
+        $currentAttributeAssociationMapping = $metadata->getAssociationMapping($mapping['fieldName']);
+
+        // Accessing public property that has been documented as read-only.
+        unset($metadata->associationMappings[$mapping['fieldName']]);
+
+        $metadata->mapManyToOne($mapping);
+
+        $metadata->associationMappings[$mapping['fieldName']] = array_merge($currentAttributeAssociationMapping, $metadata->getAssociationMapping($mapping['fieldName']));
     }
 
     private function mapManyToMany(ClassMetadata $metadata)

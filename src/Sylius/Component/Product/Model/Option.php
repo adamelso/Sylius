@@ -11,7 +11,7 @@
 
 namespace Sylius\Component\Product\Model;
 
-use Sylius\Component\Variation\Model\Option as BaseOption;
+use Sylius\Component\Archetype\Model\Option as BaseOption;
 
 /**
  * Product option model.

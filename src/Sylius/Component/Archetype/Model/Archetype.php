@@ -23,6 +23,11 @@ class Archetype implements ArchetypeInterface
     protected $name;
 
     /**
+     * @var string
+     */
+    protected $subject;
+
+    /**
      * @var Collection|AttributeInterface[]
      */
     protected $attributes;
@@ -30,17 +35,62 @@ class Archetype implements ArchetypeInterface
     /**
      * @var Collection|OptionInterface[]
      */
-    private $options;
+    protected $options;
 
     /**
+     * Parent archetype.
+     *
      * @var ArchetypeInterface
      */
-    private $parent;
+    protected $parent;
+
+    /**
+     * Child archetypes.
+     *
+     * @var Collection|ArchetypeInterface[]
+     */
+    protected $children;
+
+    /**
+     * Required by DoctrineExtensions.
+     *
+     * @var mixed
+     */
+    protected $left;
+
+    /**
+     * Required by DoctrineExtensions.
+     *
+     * @var mixed
+     */
+    protected $right;
+
+    /**
+     * Required by DoctrineExtensions.
+     *
+     * @var mixed
+     */
+    protected $level;
+
+    /**
+     * Creation time.
+     *
+     * @var \DateTime
+     */
+    protected $createdAt;
+
+    /**
+     * Last update time.
+     *
+     * @var \DateTime
+     */
+    protected $updatedAt;
 
     public function __construct()
     {
         $this->attributes = new ArrayCollection();
         $this->options = new ArrayCollection();
+        $this->createdAt = new \DateTime();
     }
 
     /**
@@ -158,9 +208,11 @@ class Archetype implements ArchetypeInterface
     /**
      * {@inheritDoc}
      */
-    public function setParent(ArchetypeInterface $parent)
+    public function setParent(ArchetypeInterface $parent = null)
     {
         $this->parent = $parent;
+
+        return $this;
     }
 
     /**
@@ -169,5 +221,147 @@ class Archetype implements ArchetypeInterface
     public function getParent()
     {
         return $this->parent;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getChildren()
+    {
+        return $this->children;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function hasChild(ArchetypeInterface $archetype)
+    {
+        return $this->children->contains($archetype);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addChild(ArchetypeInterface $archetype)
+    {
+        if (!$this->hasChild($archetype)) {
+            $archetype->setParent($this);
+
+            $this->children->add($archetype);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeChild(ArchetypeInterface $archetype)
+    {
+        if ($this->hasChild($archetype)) {
+            $archetype->setParent(null);
+
+            $this->children->removeElement($archetype);
+        }
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isRoot()
+    {
+        return null === $this->parent;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLeft()
+    {
+        return $this->left;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLeft($left)
+    {
+        $this->left = $left;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRight()
+    {
+        return $this->right;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setRight($right)
+    {
+        $this->right = $right;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLevel()
+    {
+        return $this->level;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCreatedAt(\DateTime $createdAt)
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUpdatedAt(\DateTime $updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
     }
 }

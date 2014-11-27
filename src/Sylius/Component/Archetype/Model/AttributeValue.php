@@ -20,19 +20,4 @@ use Sylius\Component\Attribute\Model\AttributeValue as BaseAttributeValue;
  */
 class AttributeValue extends BaseAttributeValue implements AttributeValueInterface
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function getDerivative()
-    {
-        return parent::getSubject();
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setDerivative(DerivativeInterface $derivative = null)
-    {
-        return parent::setSubject($derivative);
-    }
 }

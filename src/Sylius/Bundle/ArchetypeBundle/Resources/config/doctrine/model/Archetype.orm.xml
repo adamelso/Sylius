@@ -20,9 +20,24 @@
         </id>
 
         <field name="name" column="name" type="string" />
+        <field name="subject" column="subject" type="string" />
+
+        <one-to-many field="children" target-entity="Sylius\Component\Archetype\Model\ArchetypeInterface" mapped-by="parent">
+            <cascade>
+                <cascade-all />
+            </cascade>
+            <order-by>
+                <order-by-field name="left" direction="ASC" />
+            </order-by>
+        </one-to-many>
+
+        <many-to-one field="parent" target-entity="Sylius\Component\Archetype\Model\Archetype" inversed-by="children">
+            <join-column name="parent_id" referenced-column-name="id" nullable="true" on-delete="CASCADE" />
+            <gedmo:tree-parent />
+        </many-to-one>
 
         <many-to-many field="attributes" target-entity="Sylius\Component\Archetype\Model\AttributeInterface">
-            <join-table name="sylius_archetype_derivative_attribute">
+            <join-table name="sylius_archetype_subject_attribute">
                 <join-columns>
                     <join-column name="archetype_id" referenced-column-name="id" nullable="false" unique="false" />
                 </join-columns>
@@ -33,7 +48,7 @@
         </many-to-many>
 
         <many-to-many field="options" target-entity="Sylius\Component\Archetype\Model\OptionInterface">
-            <join-table name="sylius_archetype_derivative_option">
+            <join-table name="sylius_archetype_subject_option">
                 <join-columns>
                     <join-column name="archetype_id" referenced-column-name="id" nullable="false" unique="false" />
                 </join-columns>
@@ -42,14 +57,30 @@
                 </inverse-join-columns>
             </join-table>
         </many-to-many>
-<!--
+
+        <order-by>
+            <order-by-field name="left" direction="ASC" />
+        </order-by>
+
+        <field name="left" column="tree_left" type="integer">
+            <gedmo:tree-left />
+        </field>
+        <field name="right" column="tree_right" type="integer">
+            <gedmo:tree-right />
+        </field>
+        <field name="level" column="tree_level" type="integer">
+            <gedmo:tree-level />
+        </field>
+
         <field name="createdAt" column="created_at" type="datetime">
             <gedmo:timestampable on="create" />
         </field>
         <field name="updatedAt" column="updated_at" type="datetime" nullable="true">
             <gedmo:timestampable on="update" />
         </field>
--->
+
+        <gedmo:tree type="nested" />
+
     </mapped-superclass>
 
 </doctrine-mapping>

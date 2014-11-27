@@ -11,7 +11,7 @@
 
 namespace Sylius\Component\Product\Model;
 
-use Sylius\Component\Attribute\Model\AttributeValue as BaseAttributeValue;
+use Sylius\Component\Archetype\Model\AttributeValue as BaseAttributeValue;
 
 /**
  * Product to attribute value relation.

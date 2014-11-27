@@ -38,6 +38,17 @@ class ArchetypeSpec extends ObjectBehavior
         $this->getName()->shouldReturn('T-Shirt size');
     }
 
+    function it_has_no_subject_by_default()
+    {
+        $this->getSubject()->shouldReturn(null);
+    }
+
+    function its_subject_is_mutable()
+    {
+        $this->setSubject('Any\Class\Or\Product');
+        $this->getSubject()->shouldReturn('Any\Class\Or\Product');
+    }
+
     function it_initializes_attribute_collection_by_default()
     {
         $this->getAttributes()->shouldHaveType('Doctrine\Common\Collections\Collection');

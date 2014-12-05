@@ -62,6 +62,9 @@ class LoadMetadataSubscriber implements EventSubscriber
         $this->mapManyToOne($metadata);
     }
 
+    /**
+     * @param ClassMetadata $metadata
+     */
     private function mapOneToMany(ClassMetadata $metadata)
     {
         foreach ($this->variables as $class) {
@@ -69,15 +72,41 @@ class LoadMetadataSubscriber implements EventSubscriber
                 continue;
             }
 
-            $metadata->mapOneToMany(array(
-                'fieldName'    => 'values',
+            $mapping = array(
+                'fieldName' => 'values',
                 'targetEntity' => $class['option_value']['model'],
-                'mappedBy'     => 'option',
-                'cascade'      => array('all')
-            ));
+                'mappedBy' => 'option',
+                'cascade' => array('all')
+            );
+
+            if ($metadata->hasAssociation($mapping['fieldName'])) {
+//                $this->overrideOneToManyAssociationMapping($metadata, $mapping);
+            } else {
+                $metadata->mapOneToMany($mapping);
+            }
         }
     }
 
+
+    /**
+     * @param ClassMetadataInfo|ClassMetadata $metadata
+     * @param array                           $mapping
+     */
+    private function overrideOneToManyAssociationMapping(ClassMetadataInfo $metadata, array $mapping)
+    {
+        $currentAttributeAssociationMapping = $metadata->getAssociationMapping($mapping['fieldName']);
+
+        // Accessing public property that has been documented as read-only.
+//        unset($metadata->associationMappings[$mapping['fieldName']]);
+
+//        $metadata->mapOneToMany($mapping);
+
+        $metadata->associationMappings[$mapping['fieldName']] = array_merge($currentAttributeAssociationMapping, $metadata->getAssociationMapping($mapping['fieldName']));
+    }
+
+    /**
+     * @param ClassMetadata $metadata
+     */
     private function mapManyToOne(ClassMetadata $metadata)
     {
         foreach ($this->variables as $class) {
@@ -98,7 +127,7 @@ class LoadMetadataSubscriber implements EventSubscriber
             );
 
             if ($metadata->hasAssociation($mapping['fieldName'])) {
-                $this->overrideManyToOneAssociationMapping($metadata, $mapping);
+//                $this->overrideManyToOneAssociationMapping($metadata, $mapping);
             } else {
                 $metadata->mapManyToOne($mapping);
             }
@@ -114,13 +143,16 @@ class LoadMetadataSubscriber implements EventSubscriber
         $currentAttributeAssociationMapping = $metadata->getAssociationMapping($mapping['fieldName']);
 
         // Accessing public property that has been documented as read-only.
-        unset($metadata->associationMappings[$mapping['fieldName']]);
+//        unset($metadata->associationMappings[$mapping['fieldName']]);
 
-        $metadata->mapManyToOne($mapping);
+//        $metadata->mapManyToOne($mapping);
 
         $metadata->associationMappings[$mapping['fieldName']] = array_merge($currentAttributeAssociationMapping, $metadata->getAssociationMapping($mapping['fieldName']));
     }
 
+    /**
+     * @param ClassMetadata $metadata
+     */
     private function mapManyToMany(ClassMetadata $metadata)
     {
         foreach ($this->variables as $variable => $class) {

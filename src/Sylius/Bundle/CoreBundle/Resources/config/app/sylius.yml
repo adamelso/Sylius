@@ -77,8 +77,13 @@ sylius_product:
 
 sylius_archetype:
     classes:
-        archetype:
-            model: Sylius\Component\Product\Model\Prototype
+        product_prototype:
+            subject: Sylius\Component\Core\Model\Product
+            archetype:
+                model: Sylius\Component\Product\Model\Prototype
+                controller: Sylius\Bundle\ProductBundle\Controller\PrototypeController
+                repository: Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository
+                form: Sylius\Bundle\ProductBundle\Form\Type\PrototypeType
 
 sylius_attribute: ~
 

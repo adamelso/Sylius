@@ -96,7 +96,7 @@ class LoadMetadataSubscriber implements EventSubscriber
     private function mapManyToOne($metadata, $subjectMapping)
     {
         if ($metadata->hasAssociation($subjectMapping['fieldName'])) {
-            $this->overrideManyToOneAssociationMapping($metadata, $subjectMapping);
+//            $this->overrideManyToOneAssociationMapping($metadata, $subjectMapping);
         } else {
             $metadata->mapManyToOne($subjectMapping);
         }

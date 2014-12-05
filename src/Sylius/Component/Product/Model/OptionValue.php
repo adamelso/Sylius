@@ -11,7 +11,7 @@
 
 namespace Sylius\Component\Product\Model;
 
-use Sylius\Component\Archetype\Model\OptionValue as BaseOptionValue;
+use Sylius\Component\Variation\Model\OptionValue as BaseOptionValue;
 
 /**
  * Product attribute interface.

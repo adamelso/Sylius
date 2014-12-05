@@ -12,7 +12,9 @@
 namespace Sylius\Bundle\ArchetypeBundle\DependencyInjection;
 
 use Sylius\Bundle\ResourceBundle\DependencyInjection\AbstractResourceExtension;
+use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
 /**
@@ -56,19 +58,27 @@ class SyliusArchetypeExtension extends AbstractResourceExtension implements Prep
             return;
         }
 
-        $container->prependExtensionConfig('sylius_attribute', array(
-            'classes' => array(
-                'archetype' => array(
-                    'subject'         => $config['classes']['archetype']['model'],
-                    'attribute'       => array(
-                        'model' => 'Sylius\Component\Archetype\Model\Attribute'
-                    ),
-                    'attribute_value' => array(
-                        'model' => 'Sylius\Component\Archetype\Model\AttributeValue'
-                    ),
+        foreach ($config['classes'] as $archetypeName => $archetypeConfig) {
+            $archetypeClassesDefinitionName = sprintf('sylius_attribute.classes.%s', $archetypeName);
+
+            if ($container->hasDefinition($archetypeClassesDefinitionName)) {
+                throw new \InvalidArgumentException(sprintf('Cannot create Sylius Attribute services for archetype `%s` as the definition `%s` already exists.', $archetypeName, $archetypeClassesDefinitionName));
+            }
+
+            $container->prependExtensionConfig('sylius_attribute', array(
+                'classes' => array(
+                    'archetype' => array(
+                        'subject' => $archetypeConfig['subject'],
+                        'attribute' => array(
+                            'model' => 'Sylius\Component\Archetype\Model\Attribute'
+                        ),
+                        'attribute_value' => array(
+                            'model' => 'Sylius\Component\Archetype\Model\AttributeValue'
+                        ),
+                    )
                 )
-            ))
-        );
+            ));
+        }
     }
 
     /**
@@ -81,23 +91,31 @@ class SyliusArchetypeExtension extends AbstractResourceExtension implements Prep
             return;
         }
 
-        $container->prependExtensionConfig('sylius_variation', array(
-            'classes' => array(
-                'archetype' => array(
-                    'variable'     => $config['classes']['archetype']['model'],
-                    'variant'      => array(
-                        'model'      => 'Sylius\Component\Archetype\Model\Variant',
-//                        'controller' => 'Sylius\Bundle\ProductBundle\Controller\VariantController',
-//                        'form'       => 'Sylius\Bundle\ProductBundle\Form\Type\VariantType'
-                    ),
-                    'option'       => array(
-                        'model' => 'Sylius\Component\Archetype\Model\Option'
-                    ),
-                    'option_value' => array(
-                        'model' => 'Sylius\Component\Archetype\Model\OptionValue'
-                    ),
+        foreach ($config['classes'] as $archetypeName => $archetypeConfig) {
+            $archetypeClassesDefinitionName = sprintf('sylius_variation.classes.%s', $archetypeName);
+
+            if ($container->hasDefinition($archetypeClassesDefinitionName)) {
+                throw new \InvalidArgumentException(sprintf('Cannot create Sylius Variation services for archetype `%s` as the definition `%s` already exists.', $archetypeName, $archetypeClassesDefinitionName));
+            }
+
+            $container->prependExtensionConfig('sylius_variation', array(
+                'classes' => array(
+                    $archetypeName => array(
+                        'variable' => $archetypeConfig['subject'],
+                        'variant' => array(
+                            'model'      => 'Sylius\Component\Archetype\Model\Variant',
+                            //'controller' => 'Sylius\Bundle\ArchetypeBundle\Controller\VariantController',
+                            //'form'       => 'Sylius\Bundle\VariationBundle\Form\Type\VariantType'
+                        ),
+                        'option' => array(
+                            'model' => 'Sylius\Component\Archetype\Model\Option'
+                        ),
+                        'option_value' => array(
+                            'model' => 'Sylius\Component\Archetype\Model\OptionValue'
+                        ),
+                    )
                 )
-            ))
-        );
+            ));
+        }
     }
 }

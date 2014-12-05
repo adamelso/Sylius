@@ -21,7 +21,7 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  * This information is solely responsible for how the different configuration
  * sections are normalized, and merged.
  *
- * @author Paweł Jędrzejewski <pawel@sylius.org>
+ * @author Adam Elsodaney <adam.elso@gmail.com>
  */
 class Configuration implements ConfigurationInterface
 {
@@ -56,11 +56,13 @@ class Configuration implements ConfigurationInterface
         $node
             ->children()
                 ->arrayNode('validation_groups')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->arrayNode('archetype')
-                            ->prototype('scalar')->end()
-                            ->defaultValue(array('sylius'))
+                    ->useAttributeAsKey('name')
+                    ->prototype('array')
+                        ->children()
+                            ->arrayNode('archetype')
+                                ->prototype('scalar')->end()
+                                ->defaultValue(array('sylius'))
+                            ->end()
                         ->end()
                     ->end()
                 ->end()
@@ -78,15 +80,18 @@ class Configuration implements ConfigurationInterface
         $node
             ->children()
                 ->arrayNode('classes')
-                    ->addDefaultsIfNotSet()
-                    ->children()
-                        ->arrayNode('archetype')
-                            ->addDefaultsIfNotSet()
-                            ->children()
-                                ->scalarNode('model')->defaultValue('Sylius\Component\Archetype\Model\Archetype')->end()
-                                ->scalarNode('controller')->defaultValue('Sylius\Bundle\ArchetypeBundle\Controller\ArchetypeController')->end()
-                                ->scalarNode('repository')->cannotBeEmpty()->end()
-                                ->scalarNode('form')->defaultValue('Sylius\Bundle\ArchetypeBundle\Form\Type\ArchetypeType')->end()
+                    ->useAttributeAsKey('name')
+                    ->prototype('array')
+                        ->children()
+                            ->scalarNode('subject')->isRequired()->end()
+                            ->arrayNode('archetype')
+                                ->addDefaultsIfNotSet()
+                                ->children()
+                                    ->scalarNode('model')->defaultValue('Sylius\Component\Archetype\Model\Archetype')->end()
+                                    ->scalarNode('controller')->defaultValue('Sylius\Bundle\ArchetypeBundle\Controller\ArchetypeController')->end()
+                                    ->scalarNode('repository')->cannotBeEmpty()->end()
+                                    ->scalarNode('form')->defaultValue('Sylius\Bundle\ArchetypeBundle\Form\Type\ArchetypeType')->end()
+                                ->end()
                             ->end()
                         ->end()
                     ->end()

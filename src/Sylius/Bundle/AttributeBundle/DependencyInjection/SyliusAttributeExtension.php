@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\Definition;
 /**
  * Attribute extension.
  *
- * @author Paweł Jędrzejewski <pawel@sylius.org>
+ * @author Adam Elsodaney <adam.elso@gmail.com>
  */
 class SyliusAttributeExtension extends AbstractResourceExtension
 {

@@ -21,11 +21,6 @@
     </parameters>
 
     <services>
-        <service id="sylius.form.type.archetype" class="%sylius.form.type.archetype.class%">
-            <argument>%sylius.model.archetype.class%</argument>
-            <argument>%sylius.validation_group.archetype%</argument>
-            <tag name="form.type" alias="sylius_archetype" />
-        </service>
         <service id="sylius.builder.archetype_derivative" class="%sylius.builder.archetype_derivative.class%">
             <!--
                 @todo Detach from Product

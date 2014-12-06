@@ -1,6 +1,24 @@
 {
     "name": "sylius/archetype",
-    "description": "Build subjects with inherited options and attributes based on an archetype",
+    "type": "library",
+    "description": "Component for building multiple copies of an object with inherited options and attributes based on an archetype",
+    "keywords": ["shop", "ecommerce", "prototype", "archetype", "attribute", "variant", "feature"],
+    "homepage": "http://sylius.org",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Paweł Jędrzejewski",
+            "homepage": "http://pjedrzejewski.com"
+        },
+        {
+            "name": "Sylius project",
+            "homepage": "http://sylius.org"
+        },
+        {
+            "name": "Community contributions",
+            "homepage": "http://github.com/Sylius/Sylius/contributors"
+        }
+    ],
     "require": {
         "php": ">=5.3.3",
 
@@ -9,19 +27,10 @@
         "sylius/variation": "0.12.*@dev"
     },
     "require-dev": {
-        "phpspec/phpspec": "dev-master"
+        "phpspec/phpspec": "~2.0"
     },
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Adam Elsodaney",
-            "email": "adam.elso@gmail.com"
-        }
-    ],
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "config": {
-        "bin-dir": "bin/"
+        "bin-dir": "bin"
     },
     "autoload": {
         "psr-4": { "Sylius\\Component\\Archetype\\": "" }

@@ -6,12 +6,15 @@ use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sylius\Component\Attribute\Model\AttributeInterface;
 use Sylius\Component\Attribute\Model\AttributeValueInterface;
-use Sylius\Component\Archetype\Model\DerivativeInterface;
+use Sylius\Component\Archetype\Model\ArchetypeSubjectInterface;
 use Sylius\Component\Archetype\Model\ArchetypeInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Sylius\Component\Variation\Model\OptionInterface;
 
-class ArchetypeDerivativeBuilderSpec extends ObjectBehavior
+/**
+ * @author Adam Elsodaney <adam.elso@gmail.com>
+ */
+class ArchetypeBuilderSpec extends ObjectBehavior
 {
     function let(RepositoryInterface $attributeValueRepository)
     {
@@ -20,18 +23,18 @@ class ArchetypeDerivativeBuilderSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Sylius\Component\Archetype\Builder\ArchetypeDerivativeBuilder');
+        $this->shouldHaveType('Sylius\Component\Archetype\Builder\ArchetypeBuilder');
     }
 
     function it_is_an_Archetype_Builder()
     {
-        $this->shouldImplement('Sylius\Component\Archetype\Builder\ArchetypeDerivativeBuilderInterface');
+        $this->shouldImplement('Sylius\Component\Archetype\Builder\ArchetypeBuilderInterface');
     }
 
-    function it_assigns_prototype_attributes_and_options_to_product(
+    function it_assigns_archetype_attributes_and_options_to_product(
         $attributeValueRepository,
         ArchetypeInterface $archetype,
-        DerivativeInterface $derivative,
+        ArchetypeSubjectInterface $derivative,
         AttributeInterface $attribute,
         AttributeValueInterface $attributeValue,
         OptionInterface $option

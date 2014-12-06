@@ -7,6 +7,13 @@ use Sylius\Component\Attribute\Model\AttributeInterface as BaseAttributeInterfac
 use Sylius\Component\Resource\Model\TimestampableInterface;
 use Sylius\Component\Variation\Model\OptionInterface as BaseOptionInterface;
 
+/**
+ * The archetype defines the template for new objects to be created from
+ * which these object will inherit options and attributes from an instance
+ * of this class.
+ *
+ * @author Adam Elsodaney <adam.elso@gmail.com>
+ */
 interface ArchetypeInterface extends TimestampableInterface
 {
     /**

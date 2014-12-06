@@ -14,9 +14,9 @@ namespace Sylius\Component\Archetype\Model;
 use Sylius\Component\Attribute\Model\Attribute as BaseAttribute;
 
 /**
- * Product attribute model.
+ * Archetype attribute model.
  *
- * @author Paweł Jędrzejewski <pawel@sylius.org>
+ * @author Adam Elsodaney <adam.elso@gmail.com>
  */
 class Attribute extends BaseAttribute implements AttributeInterface
 {

@@ -14,9 +14,9 @@ namespace Sylius\Component\Archetype\Model;
 use Sylius\Component\Attribute\Model\AttributeInterface as BaseAttributeInterface;
 
 /**
- * Product attributes interface.
+ * Archetype attributes interface.
  *
- * @author Paweł Jędrzejewski <pawel@sylius.org>
+ * @author Adam Elsodaney <adam.elso@gmail.com>
  */
 interface AttributeInterface extends BaseAttributeInterface
 {

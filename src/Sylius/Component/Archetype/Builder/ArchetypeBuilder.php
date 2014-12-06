@@ -2,7 +2,7 @@
 
 namespace Sylius\Component\Archetype\Builder;
 
-use Sylius\Component\Archetype\Model\DerivativeInterface;
+use Sylius\Component\Archetype\Model\ArchetypeSubjectInterface;
 use Sylius\Component\Archetype\Model\ArchetypeInterface;
 use Sylius\Component\Attribute\Model\AttributeSubjectInterface;
 use Sylius\Component\Attribute\Model\AttributeValueInterface;
@@ -11,7 +11,10 @@ use Sylius\Component\Variation\Model\OptionInterface;
 use Sylius\Component\Variation\Model\VariableInterface;
 use Sylius\Component\Variation\Model\VariantInterface;
 
-class ArchetypeDerivativeBuilder implements ArchetypeDerivativeBuilderInterface
+/**
+ * @author Adam Elsodaney <adam.elso@gmail.com>
+ */
+class ArchetypeBuilder implements ArchetypeBuilderInterface
 {
     /**
      * Attribute value repository.
@@ -33,35 +36,35 @@ class ArchetypeDerivativeBuilder implements ArchetypeDerivativeBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function build(ArchetypeInterface $archetype, DerivativeInterface $derivative)
+    public function build(ArchetypeInterface $archetype, ArchetypeSubjectInterface $subject)
     {
-        $this->createAndAssignAttributes($archetype, $derivative);
-        $this->createAndAssignOptions($archetype, $derivative);
+        $this->createAndAssignAttributes($archetype, $subject);
+        $this->createAndAssignOptions($archetype, $subject);
     }
 
     /**
      * @param ArchetypeInterface        $archetype
-     * @param AttributeSubjectInterface $derivative
+     * @param AttributeSubjectInterface $subject
      */
-    private function createAndAssignAttributes(ArchetypeInterface $archetype, AttributeSubjectInterface $derivative)
+    private function createAndAssignAttributes(ArchetypeInterface $archetype, AttributeSubjectInterface $subject)
     {
         foreach ($archetype->getAttributes() as $attribute) {
             /** @var AttributeValueInterface $attributeValue */
             $attributeValue = $this->attributeValueRepository->createNew();
             $attributeValue->setAttribute($attribute);
 
-            $derivative->addAttribute($attributeValue);
+            $subject->addAttribute($attributeValue);
         }
     }
 
     /**
      * @param ArchetypeInterface $archetype
-     * @param VariableInterface  $derivative
+     * @param VariableInterface  $subject
      */
-    private function createAndAssignOptions(ArchetypeInterface $archetype, VariableInterface $derivative)
+    private function createAndAssignOptions(ArchetypeInterface $archetype, VariableInterface $subject)
     {
         foreach ($archetype->getOptions() as $option) {
-            $derivative->addOption($option);
+            $subject->addOption($option);
         }
     }
 }

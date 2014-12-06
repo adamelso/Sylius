@@ -14,9 +14,9 @@ namespace Sylius\Component\Archetype\Model;
 use Sylius\Component\Attribute\Model\AttributeValue as BaseAttributeValue;
 
 /**
- * Product to attribute value relation.
+ * Archetype to attribute value relation.
  *
- * @author Paweł Jędrzejewski <pawel@sylius.org>
+ * @author Adam Elsodaney <adam.elso@gmail.com>
  */
 class AttributeValue extends BaseAttributeValue implements AttributeValueInterface
 {

@@ -14,9 +14,9 @@ namespace Sylius\Component\Archetype\Model;
 use Sylius\Component\Variation\Model\Option as BaseOption;
 
 /**
- * Product option model.
+ * Archetype option model.
  *
- * @author Paweł Jędrzejewski <pawel@sylius.org>
+ * @author Adam Elsodaney <adam.elso@gmail.com>
  */
 class Option extends BaseOption implements OptionInterface
 {

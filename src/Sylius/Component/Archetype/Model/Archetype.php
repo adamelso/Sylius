@@ -7,7 +7,11 @@ use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Attribute\Model\AttributeInterface as BaseAttributeInterface;
 use Sylius\Component\Variation\Model\OptionInterface as BaseOptionInterface;
 
-
+/**
+ * The archetype model.
+ *
+ * @author Adam Elsodaney <adam.elso@gmail.com>
+ */
 class Archetype implements ArchetypeInterface
 {
     /**

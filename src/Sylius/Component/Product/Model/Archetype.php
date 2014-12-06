@@ -23,7 +23,7 @@ use Sylius\Component\Variation\Model\OptionInterface as BaseOptionInterface;
  *
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-class Prototype extends Archetype implements PrototypeInterface
+class Archetype extends Archetype implements PrototypeInterface
 {
     /**
      * Constructor.

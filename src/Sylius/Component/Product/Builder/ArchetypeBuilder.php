@@ -20,6 +20,6 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
  *
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-class PrototypeBuilder extends ArchetypeDerivativeBuilder implements ArchetypeDerivativeBuilderInterface
+class ArchetypeBuilder extends ArchetypeDerivativeBuilder implements ArchetypeDerivativeBuilderInterface
 {
 }

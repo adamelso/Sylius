@@ -10,6 +10,9 @@ use Sylius\Component\Archetype\Model\ArchetypeInterface;
 use Sylius\Component\Attribute\Model\AttributeInterface;
 use Sylius\Component\Variation\Model\OptionInterface;
 
+/**
+ * @author Adam Elsodaney <adam.elso@gmail.com>
+ */
 class ArchetypeSpec extends ObjectBehavior
 {
     function it_is_initializable()

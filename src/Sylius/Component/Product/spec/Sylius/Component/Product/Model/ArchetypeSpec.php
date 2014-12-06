@@ -14,12 +14,12 @@ namespace spec\Sylius\Component\Product\Model;
 use Doctrine\Common\Collections\Collection;
 use PhpSpec\ObjectBehavior;
 use Sylius\Component\Product\Model\AttributeInterface;
-use Sylius\Component\Product\Model\PrototypeInterface;
+use Sylius\Component\Product\Model\ArchetypeInterface;
 
 /**
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-class PrototypeSpec extends ObjectBehavior
+class ArchetypeSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
@@ -109,7 +109,7 @@ class PrototypeSpec extends ObjectBehavior
         $this->hasParent()->shouldReturn(false);
     }
 
-    function its_parent_is_mutable(PrototypeInterface $parent)
+    function its_parent_is_mutable(ArchetypeInterface $parent)
     {
         $this->setParent($parent);
         $this->getParent()->shouldReturn($parent);

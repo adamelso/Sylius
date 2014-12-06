@@ -12,7 +12,7 @@
 namespace Sylius\Component\Product\Model;
 
 use Doctrine\Common\Collections\Collection;
-use Sylius\Component\Archetype\Model\ArchetypeInterface;
+use Sylius\Component\Archetype\Model\ArchetypeInterface as BaseArchetypeInterface;
 use Sylius\Component\Attribute\Model\AttributeInterface as BaseAttributeInterface;
 use Sylius\Component\Variation\Model\OptionInterface as BaseOptionInterface;
 
@@ -22,6 +22,6 @@ use Sylius\Component\Variation\Model\OptionInterface as BaseOptionInterface;
  *
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-interface PrototypeInterface extends ArchetypeInterface
+interface ArchetypeInterface extends BaseArchetypeInterface
 {
 }

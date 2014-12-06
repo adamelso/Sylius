@@ -12,13 +12,13 @@
 namespace Sylius\Component\Product\Model;
 
 use Sylius\Component\Archetype\Model\Archetype as BaseArchetype;
-use Sylius\Component\Archetype\Model\ArchetypeInterface;
+use Sylius\Component\Archetype\Model\ArchetypeInterface as BaseArchetypeInterface;
 
 /**
  * Default archetype implementation.
  *
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-class Archetype extends BaseArchetype implements ArchetypeInterface
+class Archetype extends BaseArchetype implements BaseArchetypeInterface
 {
 }

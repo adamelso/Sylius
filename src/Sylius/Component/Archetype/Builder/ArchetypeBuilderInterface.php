@@ -15,6 +15,7 @@ use Sylius\Component\Archetype\Model\ArchetypeSubjectInterface;
 use Sylius\Component\Archetype\Model\ArchetypeInterface;
 
 /**
+ * @author Paweł Jędrzejewski <pawel@sylius.org>
  * @author Adam Elsodaney <adam.elso@gmail.com>
  */
 interface ArchetypeBuilderInterface

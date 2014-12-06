@@ -21,6 +21,7 @@ use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Sylius\Component\Variation\Model\OptionInterface;
 
 /**
+ * @author Paweł Jędrzejewski <pawel@sylius.org>
  * @author Adam Elsodaney <adam.elso@gmail.com>
  */
 class ArchetypeBuilderSpec extends ObjectBehavior

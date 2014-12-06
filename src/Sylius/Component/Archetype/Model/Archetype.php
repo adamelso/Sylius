@@ -19,6 +19,7 @@ use Sylius\Component\Variation\Model\OptionInterface as BaseOptionInterface;
 /**
  * The archetype model.
  *
+ * @author Paweł Jędrzejewski <pawel@sylius.org>
  * @author Adam Elsodaney <adam.elso@gmail.com>
  */
 class Archetype implements ArchetypeInterface

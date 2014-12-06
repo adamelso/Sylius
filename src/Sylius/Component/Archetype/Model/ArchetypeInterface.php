@@ -21,6 +21,7 @@ use Sylius\Component\Variation\Model\OptionInterface as BaseOptionInterface;
  * which these object will inherit options and attributes from an instance
  * of this class.
  *
+ * @author Paweł Jędrzejewski <pawel@sylius.org>
  * @author Adam Elsodaney <adam.elso@gmail.com>
  */
 interface ArchetypeInterface extends TimestampableInterface

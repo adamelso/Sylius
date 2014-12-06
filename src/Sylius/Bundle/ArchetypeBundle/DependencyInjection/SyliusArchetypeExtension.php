@@ -12,15 +12,13 @@
 namespace Sylius\Bundle\ArchetypeBundle\DependencyInjection;
 
 use Sylius\Bundle\ResourceBundle\DependencyInjection\AbstractResourceExtension;
-use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 
 /**
  * Archetype extension.
  *
- * @author Paweł Jędrzejewski <pawel@sylius.org>
+ * @author Adam Elsodaney <adam.elso@gmail.com>
  */
 class SyliusArchetypeExtension extends AbstractResourceExtension implements PrependExtensionInterface
 {
@@ -104,14 +102,14 @@ class SyliusArchetypeExtension extends AbstractResourceExtension implements Prep
                         'variable' => $archetypeConfig['subject'],
                         'variant' => array(
                             'model'      => 'Sylius\Component\Archetype\Model\Variant',
-                            //'controller' => 'Sylius\Bundle\ArchetypeBundle\Controller\VariantController',
-                            //'form'       => 'Sylius\Bundle\VariationBundle\Form\Type\VariantType'
+                            'controller' => 'Sylius\Bundle\ResourceBundle\Controller\ResourceController',
+                            'form'       => 'Sylius\Bundle\VariationBundle\Form\Type\VariantType',
                         ),
                         'option' => array(
-                            'model' => 'Sylius\Component\Archetype\Model\Option'
+                            'model'      => 'Sylius\Component\Archetype\Model\Option',
                         ),
                         'option_value' => array(
-                            'model' => 'Sylius\Component\Archetype\Model\OptionValue'
+                            'model'      => 'Sylius\Component\Archetype\Model\OptionValue',
                         ),
                     )
                 )

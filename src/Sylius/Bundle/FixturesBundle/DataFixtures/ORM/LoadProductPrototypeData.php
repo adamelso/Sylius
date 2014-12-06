@@ -13,7 +13,7 @@ namespace Sylius\Bundle\FixturesBundle\DataFixtures\ORM;
 
 use Doctrine\Common\Persistence\ObjectManager;
 use Sylius\Bundle\FixturesBundle\DataFixtures\DataFixture;
-use Sylius\Component\Product\Model\PrototypeInterface;
+use Sylius\Component\Product\Model\ArchetypeInterface;
 
 /**
  * Sample product prototypes.
@@ -57,11 +57,11 @@ class LoadProductPrototypeData extends DataFixture
      * @param array  $options
      * @param array  $properties
      *
-     * @return PrototypeInterface
+     * @return ArchetypeInterface
      */
     protected function createPrototype($name, array $options, array $properties)
     {
-        /* @var $prototype PrototypeInterface */
+        /* @var $prototype ArchetypeInterface */
         $prototype = $this->getProductPrototypeRepository()->createNew();
         $prototype->setName($name);
 
@@ -72,7 +72,7 @@ class LoadProductPrototypeData extends DataFixture
             $prototype->addAttribute($this->getReference('Sylius.Attribute.'.$attribute));
         }
 
-        $this->setReference('Sylius.Prototype.'.$name, $prototype);
+        $this->setReference('Sylius.Archetype.'.$name, $prototype);
 
         return $prototype;
     }

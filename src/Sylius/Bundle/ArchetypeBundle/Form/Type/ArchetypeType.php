@@ -17,7 +17,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 /**
  * Product prototype form type.
  *
- * @author Paweł Jędrzejewski <pawel@sylius.org>
+ * @author Adam Elsodaney <adam.elso@gmail.com>
  */
 class ArchetypeType extends AbstractResourceType
 {

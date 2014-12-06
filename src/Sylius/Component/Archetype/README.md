@@ -12,7 +12,8 @@ Modern ecommerce for PHP and Symfony2. Visit [Sylius.org](http://sylius.org).
 Documentation
 -------------
 
-?
+Documentation is available on [**docs.sylius.org**](http://docs.sylius.org/en/latest/components/Archetype/index.html).
+
 
 Contributing
 ------------
@@ -39,9 +40,11 @@ If you find a bug, please refer to the [Reporting a Bug](http://docs.sylius.org/
 MIT License
 -----------
 
-?
+License can be found [here](https://github.com/Sylius/Attribute/blob/master/LICENSE).
+
 
 Authors
 -------
 
-?
+The component was originally created by [Adam Elsodaney](http://archfizz.com).
+See the list of [contributors](https://github.com/Sylius/Attribute/contributors).

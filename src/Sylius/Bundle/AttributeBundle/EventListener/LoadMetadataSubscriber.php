@@ -90,31 +90,11 @@ class LoadMetadataSubscriber implements EventSubscriber
     }
 
     /**
-     * @param $metadata
-     * @param $subjectMapping
-     */
-    private function mapManyToOne($metadata, $subjectMapping)
-    {
-        if ($metadata->hasAssociation($subjectMapping['fieldName'])) {
-//            $this->overrideManyToOneAssociationMapping($metadata, $subjectMapping);
-        } else {
-            $metadata->mapManyToOne($subjectMapping);
-        }
-    }
-
-    /**
      * @param ClassMetadataInfo|ClassMetadata $metadata
-     * @param array                           $mapping
+     * @param array                           $subjectMapping
      */
-    private function overrideManyToOneAssociationMapping(ClassMetadataInfo $metadata, array $mapping)
+    private function mapManyToOne(ClassMetadataInfo $metadata, array $subjectMapping)
     {
-        $currentAttributeAssociationMapping = $metadata->getAssociationMapping($mapping['fieldName']);
-
-        // Accessing public property that has been documented as read-only.
-        unset($metadata->associationMappings[$mapping['fieldName']]);
-
-        $metadata->mapManyToOne($mapping);
-
-        $metadata->associationMappings[$mapping['fieldName']] = array_merge($currentAttributeAssociationMapping, $metadata->getAssociationMapping($mapping['fieldName']));
+        $metadata->mapManyToOne($subjectMapping);
     }
 }

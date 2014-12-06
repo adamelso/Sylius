@@ -11,15 +11,14 @@
 
 namespace Sylius\Component\Product\Builder;
 
-use Sylius\Component\Archetype\Builder\ArchetypeDerivativeBuilder;
-use Sylius\Component\Archetype\Builder\ArchetypeDerivativeBuilderInterface;
-use Sylius\Component\Resource\Repository\RepositoryInterface;
+use Sylius\Component\Archetype\Builder\ArchetypeBuilder as BaseArchetypeBuilder;
+use Sylius\Component\Archetype\Builder\ArchetypeBuilderInterface as BaseArchetypeBuilderInterface;
 
 /**
- * Prototype builder.
+ * Archetype builder.
  *
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-class ArchetypeBuilder extends ArchetypeDerivativeBuilder implements ArchetypeDerivativeBuilderInterface
+class ArchetypeBuilder extends BaseArchetypeBuilder implements BaseArchetypeBuilderInterface
 {
 }

@@ -11,7 +11,7 @@
 
 namespace Sylius\Component\Product\Model;
 
-use Sylius\Component\Archetype\Model\DerivativeInterface;
+use Sylius\Component\Archetype\Model\ArchetypeSubjectInterface;
 use Sylius\Component\Attribute\Model\AttributeSubjectInterface;
 use Sylius\Component\Resource\Model\SoftDeletableInterface;
 use Sylius\Component\Resource\Model\TimestampableInterface;
@@ -23,7 +23,7 @@ use Sylius\Component\Variation\Model\VariableInterface;
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
 interface ProductInterface extends
-    DerivativeInterface,
+    ArchetypeSubjectInterface,
     SoftDeletableInterface,
     TimestampableInterface
 {

@@ -15,12 +15,12 @@ class ArchetypeEntityChoiceTypeSpec extends ObjectBehavior
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Sylius\Bundle\ProductBundle\Form\Type\PrototypeEntityChoiceType');
+        $this->shouldHaveType('Sylius\Bundle\ProductBundle\Form\Type\ArchetypeEntityChoiceType');
     }
 
-    function it_is_a_Sylius_product_prototype_form_choice_type()
+    function it_is_a_Sylius_product_archetype_form_choice_type()
     {
-        $this->shouldHaveType('Sylius\Bundle\ProductBundle\Form\Type\PrototypeChoiceType');
+        $this->shouldHaveType('Sylius\Bundle\ProductBundle\Form\Type\ArchetypeChoiceType');
     }
 
     function it_is_a_Sylius_archetype_form_choice_type()
@@ -35,7 +35,7 @@ class ArchetypeEntityChoiceTypeSpec extends ObjectBehavior
 
     function it_has_a_name()
     {
-        $this->getName()->shouldBe('sylius_product_prototype_parent_choice');
+        $this->getName()->shouldBe('sylius_product_archetype_parent_choice');
     }
 
     function it_has_a_parent_type()
@@ -51,7 +51,7 @@ class ArchetypeEntityChoiceTypeSpec extends ObjectBehavior
         ;
 
         $builder
-            ->add('parent', 'sylius_product_prototype_parent_choice', Argument::any())
+            ->add('parent', 'sylius_product_archetype_parent_choice', Argument::any())
             ->willReturn($builder)
         ;
 

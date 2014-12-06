@@ -11,15 +11,9 @@
 
 namespace Sylius\Component\Product\Model;
 
-use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Archetype\Model\ArchetypeInterface as BaseArchetypeInterface;
-use Sylius\Component\Attribute\Model\AttributeInterface as BaseAttributeInterface;
-use Sylius\Component\Variation\Model\OptionInterface as BaseOptionInterface;
 
 /**
- * Used to generate full product form.
- * It simplifies product creation.
- *
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
 interface ArchetypeInterface extends BaseArchetypeInterface

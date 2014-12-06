@@ -5,7 +5,7 @@ namespace Sylius\Bundle\ArchetypeBundle\Form\Type;
 /**
  * Archetype choice form type.
  *
- * @author Paweł Jędrzejewski <pawel@sylius.org>
+ * @author Adam Elsodaney <adam.elso@gmail.com>
  */
 class ArchetypeEntityChoiceType extends ArchetypeChoiceType
 {

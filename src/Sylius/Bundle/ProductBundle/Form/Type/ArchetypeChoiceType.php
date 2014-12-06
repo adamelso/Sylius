@@ -2,9 +2,9 @@
 
 namespace Sylius\Bundle\ProductBundle\Form\Type;
 
-use Sylius\Bundle\ArchetypeBundle\Form\Type\ArchetypeChoiceType;
+use Sylius\Bundle\ArchetypeBundle\Form\Type\ArchetypeChoiceType as BaseArchetypeChoiceType;
 
-class PrototypeChoiceType extends ArchetypeChoiceType
+class ArchetypeChoiceType extends BaseArchetypeChoiceType
 {
     /**
      * @param string $className
@@ -19,6 +19,6 @@ class PrototypeChoiceType extends ArchetypeChoiceType
      */
     public function getName()
     {
-        return 'sylius_product_prototype_parent_choice';
+        return 'sylius_product_archetype_parent_choice';
     }
 }

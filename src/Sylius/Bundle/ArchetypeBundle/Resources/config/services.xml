@@ -16,18 +16,4 @@
            xsi:schemaLocation="http://symfony.com/schema/dic/services
                                http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-        <parameter key="sylius.builder.archetype_derivative.class">Sylius\Component\Archetype\Builder\ArchetypeDerivativeBuilder</parameter>
-    </parameters>
-
-    <services>
-        <service id="sylius.builder.archetype_derivative" class="%sylius.builder.archetype_derivative.class%">
-            <!--
-                @todo Detach from Product
-            -->
-            <argument type="service" id="sylius.repository.product_attribute_value" />
-        </service>
-
-    </services>
-
 </container>

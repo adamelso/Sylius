@@ -11,27 +11,14 @@
 
 namespace Sylius\Component\Product\Model;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
-use Sylius\Component\Archetype\Model\Archetype;
+use Sylius\Component\Archetype\Model\Archetype as BaseArchetype;
 use Sylius\Component\Archetype\Model\ArchetypeInterface;
-use Sylius\Component\Attribute\Model\AttributeInterface as BaseAttributeInterface;
-use Sylius\Component\Variation\Model\OptionInterface as BaseOptionInterface;
 
 /**
- * Default prototype implementation.
+ * Default archetype implementation.
  *
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-class Archetype extends Archetype implements PrototypeInterface
+class Archetype extends BaseArchetype implements ArchetypeInterface
 {
-    /**
-     * Constructor.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->subject = 'Sylius\Component\Product\Model\ProductInterface';
-    }
 }

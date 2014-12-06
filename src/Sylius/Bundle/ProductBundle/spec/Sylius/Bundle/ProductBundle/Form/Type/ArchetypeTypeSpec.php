@@ -23,12 +23,12 @@ class ArchetypeTypeSpec extends ObjectBehavior
 {
     function let()
     {
-        $this->beConstructedWith('Prototype', array('sylius'));
+        $this->beConstructedWith('Archetype', array('sylius'));
     }
 
     function it_is_initializable()
     {
-        $this->shouldHaveType('Sylius\Bundle\ProductBundle\Form\Type\PrototypeType');
+        $this->shouldHaveType('Sylius\Bundle\ProductBundle\Form\Type\ArchetypeType');
     }
 
     function it_is_a_form_type()
@@ -44,7 +44,7 @@ class ArchetypeTypeSpec extends ObjectBehavior
         ;
 
         $builder
-            ->add('parent', 'sylius_product_prototype_parent_choice', Argument::any())
+            ->add('parent', 'sylius_product_archetype_parent_choice', Argument::any())
             ->willReturn($builder)
         ;
 
@@ -65,7 +65,7 @@ class ArchetypeTypeSpec extends ObjectBehavior
     {
         $resolver->setDefaults(
             array(
-                'data_class' => 'Prototype',
+                'data_class' => 'Archetype',
                 'validation_groups' => array('sylius')
             ))->shouldBeCalled();
 
@@ -74,6 +74,6 @@ class ArchetypeTypeSpec extends ObjectBehavior
 
     function it_has_valid_name()
     {
-        $this->getName()->shouldReturn('sylius_product_prototype');
+        $this->getName()->shouldReturn('sylius_product_archetype');
     }
 }

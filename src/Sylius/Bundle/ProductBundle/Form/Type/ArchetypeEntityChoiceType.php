@@ -2,7 +2,7 @@
 
 namespace Sylius\Bundle\ProductBundle\Form\Type;
 
-class PrototypeEntityChoiceType extends PrototypeChoiceType
+class ArchetypeEntityChoiceType extends ArchetypeChoiceType
 {
     /**
      * {@inheritdoc}

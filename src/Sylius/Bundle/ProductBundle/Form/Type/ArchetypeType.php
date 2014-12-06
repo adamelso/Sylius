@@ -11,15 +11,15 @@
 
 namespace Sylius\Bundle\ProductBundle\Form\Type;
 
-use Sylius\Bundle\ArchetypeBundle\Form\Type\ArchetypeType;
+use Sylius\Bundle\ArchetypeBundle\Form\Type\ArchetypeType as BaseArchetypeType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
- * Product prototype form type.
+ * Product archetype form type.
  *
  * @author Paweł Jędrzejewski <pawel@sylius.org>
  */
-class PrototypeType extends ArchetypeType
+class ArchetypeType extends BaseArchetypeType
 {
     /**
      * {@inheritdoc}
@@ -28,22 +28,22 @@ class PrototypeType extends ArchetypeType
     {
         $builder
             ->add('name', 'text', array(
-                'label' => 'sylius.form.product_prototype.name'
+                'label' => 'sylius.form.product_archetype.name'
             ))
-            ->add('parent', 'sylius_product_prototype_parent_choice', array(
+            ->add('parent', 'sylius_product_archetype_parent_choice', array(
                 'required' => false,
-                'label' => 'sylius.form.product_prototype.parent',
+                'label' => 'sylius.form.product_archetype.parent',
                 'property' => 'name'
             ))
             ->add('attributes', 'sylius_product_attribute_choice', array(
                 'required' => false,
                 'multiple' => true,
-                'label'    => 'sylius.form.product_prototype.attributes'
+                'label'    => 'sylius.form.product_archetype.attributes'
             ))
             ->add('options', 'sylius_product_option_choice', array(
                 'required' => false,
                 'multiple' => true,
-                'label'    => 'sylius.form.product_prototype.options'
+                'label'    => 'sylius.form.product_archetype.options'
             ))
         ;
     }
@@ -53,6 +53,6 @@ class PrototypeType extends ArchetypeType
      */
     public function getName()
     {
-        return 'sylius_product_prototype';
+        return 'sylius_product_archetype';
     }
 }

@@ -11,6 +11,7 @@
 
 namespace Sylius\Bundle\ArchetypeBundle\DependencyInjection;
 
+use Sylius\Bundle\ResourceBundle\SyliusResourceBundle;
 use Symfony\Component\Config\Definition\Builder\ArrayNodeDefinition;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -36,7 +37,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->addDefaultsIfNotSet()
             ->children()
-                ->scalarNode('driver')->defaultValue(\Sylius\Bundle\ResourceBundle\SyliusResourceBundle::DRIVER_DOCTRINE_ORM)->end()
+                ->scalarNode('driver')->defaultValue(SyliusResourceBundle::DRIVER_DOCTRINE_ORM)->end()
             ->end()
         ;
 
@@ -88,7 +89,7 @@ class Configuration implements ConfigurationInterface
                                 ->addDefaultsIfNotSet()
                                 ->children()
                                     ->scalarNode('model')->defaultValue('Sylius\Component\Archetype\Model\Archetype')->end()
-                                    ->scalarNode('controller')->defaultValue('Sylius\Bundle\ArchetypeBundle\Controller\ArchetypeController')->end()
+                                    ->scalarNode('controller')->defaultValue('Sylius\Bundle\ResourceBundle\Controller\ResourceController')->end()
                                     ->scalarNode('repository')->cannotBeEmpty()->end()
                                     ->scalarNode('form')->defaultValue('Sylius\Bundle\ArchetypeBundle\Form\Type\ArchetypeType')->end()
                                 ->end()

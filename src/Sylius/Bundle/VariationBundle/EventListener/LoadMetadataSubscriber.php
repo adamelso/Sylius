@@ -79,29 +79,8 @@ class LoadMetadataSubscriber implements EventSubscriber
                 'cascade' => array('all')
             );
 
-            if ($metadata->hasAssociation($mapping['fieldName'])) {
-//                $this->overrideOneToManyAssociationMapping($metadata, $mapping);
-            } else {
-                $metadata->mapOneToMany($mapping);
-            }
+            $metadata->mapOneToMany($mapping);
         }
-    }
-
-
-    /**
-     * @param ClassMetadataInfo|ClassMetadata $metadata
-     * @param array                           $mapping
-     */
-    private function overrideOneToManyAssociationMapping(ClassMetadataInfo $metadata, array $mapping)
-    {
-        $currentAttributeAssociationMapping = $metadata->getAssociationMapping($mapping['fieldName']);
-
-        // Accessing public property that has been documented as read-only.
-//        unset($metadata->associationMappings[$mapping['fieldName']]);
-
-//        $metadata->mapOneToMany($mapping);
-
-        $metadata->associationMappings[$mapping['fieldName']] = array_merge($currentAttributeAssociationMapping, $metadata->getAssociationMapping($mapping['fieldName']));
     }
 
     /**
@@ -126,28 +105,8 @@ class LoadMetadataSubscriber implements EventSubscriber
                 ))
             );
 
-            if ($metadata->hasAssociation($mapping['fieldName'])) {
-//                $this->overrideManyToOneAssociationMapping($metadata, $mapping);
-            } else {
-                $metadata->mapManyToOne($mapping);
-            }
+            $metadata->mapManyToOne($mapping);
         }
-    }
-
-    /**
-     * @param ClassMetadataInfo|ClassMetadata $metadata
-     * @param array                           $mapping
-     */
-    private function overrideManyToOneAssociationMapping(ClassMetadataInfo $metadata, array $mapping)
-    {
-        $currentAttributeAssociationMapping = $metadata->getAssociationMapping($mapping['fieldName']);
-
-        // Accessing public property that has been documented as read-only.
-//        unset($metadata->associationMappings[$mapping['fieldName']]);
-
-//        $metadata->mapManyToOne($mapping);
-
-        $metadata->associationMappings[$mapping['fieldName']] = array_merge($currentAttributeAssociationMapping, $metadata->getAssociationMapping($mapping['fieldName']));
     }
 
     /**

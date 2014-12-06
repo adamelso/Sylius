@@ -4,6 +4,11 @@ namespace Sylius\Bundle\ProductBundle\Form\Type;
 
 use Sylius\Bundle\ArchetypeBundle\Form\Type\ArchetypeChoiceType as BaseArchetypeChoiceType;
 
+/**
+ * Archetype choice form type.
+ *
+ * @author Adam Elsodaney <adam.elso@gmail.com>
+ */
 class ArchetypeChoiceType extends BaseArchetypeChoiceType
 {
     /**

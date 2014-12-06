@@ -34,7 +34,7 @@ class ArchetypeBuilderSpec extends ObjectBehavior
     function it_assigns_archetype_attributes_and_options_to_product(
         $attributeValueRepository,
         ArchetypeInterface $archetype,
-        ArchetypeSubjectInterface $derivative,
+        ArchetypeSubjectInterface $subject,
         AttributeInterface $attribute,
         AttributeValueInterface $attributeValue,
         OptionInterface $option
@@ -45,9 +45,9 @@ class ArchetypeBuilderSpec extends ObjectBehavior
         $attributeValueRepository->createNew()->shouldBeCalled()->willReturn($attributeValue);
         $attributeValue->setAttribute($attribute)->shouldBeCalled();
 
-        $derivative->addAttribute($attributeValue)->shouldBeCalled();
-        $derivative->addOption($option)->shouldBeCalled();
+        $subject->addAttribute($attributeValue)->shouldBeCalled();
+        $subject->addOption($option)->shouldBeCalled();
 
-        $this->build($archetype, $derivative);
+        $this->build($archetype, $subject);
     }
 }

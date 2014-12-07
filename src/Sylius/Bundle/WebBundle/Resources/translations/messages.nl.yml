@@ -555,7 +555,7 @@ sylius:
     update_header: Eigenschap bewerken
     updated_at: laatst bijgewerkt
   prototype:
-    build: Prototype bouwen
+    build: Archetype bouwen
     build_header: Maak een product op basis van een prototype
     create: Nieuw prototype
     create_header: Nieuw prototype toevoegen
@@ -564,7 +564,7 @@ sylius:
     no_results: Er zijn geen prototypes gedefinieerd.
     options: opties
     properties: eigenschappen
-    update_header: Prototype bewerken
+    update_header: Archetype bewerken
     updated_at: laatst bijgewerkt
   province:
     provinces: Provincies

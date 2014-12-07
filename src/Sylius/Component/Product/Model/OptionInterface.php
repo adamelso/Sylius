@@ -11,7 +11,7 @@
 
 namespace Sylius\Component\Product\Model;
 
-use Sylius\Component\Variation\Model\OptionInterface as BaseOptionInterface;
+use Sylius\Component\Archetype\Model\OptionInterface as BaseOptionInterface;
 
 /**
  * Product options interface.

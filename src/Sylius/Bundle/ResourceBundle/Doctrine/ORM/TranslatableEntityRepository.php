@@ -12,15 +12,15 @@
 namespace Sylius\Bundle\ResourceBundle\Doctrine\ORM;
 
 use Doctrine\ORM\QueryBuilder;
-use Sylius\Bundle\ResourceBundle\Doctrine\TranslatableEntityRepositoryInterface;
 use Sylius\Component\Locale\Context\LocaleContextInterface;
+use Sylius\Component\Resource\Repository\TranslatableModelRepositoryInterface;
 
 /**
  * Doctrine ORM driver translatable entity repository.
  *
  * @author Gonzalo Vilaseca <gvilaseca@reiss.co.uk>
  */
-class TranslatableEntityRepository extends EntityRepository implements TranslatableEntityRepositoryInterface
+class TranslatableEntityRepository extends EntityRepository implements TranslatableModelRepositoryInterface
 {
     protected $localeContext;
     protected $translatableFields = array();

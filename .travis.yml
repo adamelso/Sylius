@@ -10,7 +10,7 @@ php:
 env:
     - TEST_SUITE=1
     - TEST_SUITE=2
-    
+
 matrix:
     include:
         - php: 5.3
@@ -20,7 +20,7 @@ matrix:
 
 services:
     - mongodb
-    
+
 addons:
     apt:
         packages:
@@ -54,7 +54,7 @@ before_script:
 
     - "sh -e /etc/init.d/xvfb start"
     - "export DISPLAY=:99"
-    - "curl http://selenium-release.storage.googleapis.com/2.41/selenium-server-standalone-2.41.0.jar > selenium.jar"
+    - "curl http://selenium-release.storage.googleapis.com/2.45/selenium-server-standalone-2.45.0.jar > selenium.jar"
     - "java -jar selenium.jar > /dev/null &"
     - "sleep 5"
 

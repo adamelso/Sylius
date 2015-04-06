@@ -43,7 +43,8 @@ before_script:
 #    - sudo sed -i -e "s,/var/www,$(pwd)/web,g" /etc/apache2/sites-available/default
 #    - sudo /etc/init.d/apache2 restart
 
-    - export BEHAT_PARAMS='{ "sessions": { "default": { "symfony2": null }, "javascript": { "selenium2": { "wd_host": "http://127.0.0.1:4444/wd/hub" } } }, "base_url": "http://localhost:8000/app_test.php/", "browser_name": "firefox", "show_auto": false }'
+    - >
+        export BEHAT_PARAMS='{ "sessions": { "default": { "symfony2": null }, "javascript": { "selenium2": { "wd_host": "http://127.0.0.1:4444/wd/hub" } } }, "base_url": "http://localhost:8000/app_test.php/", "browser_name": "firefox", "show_auto": false }'
 
     - composer self-update
     - composer install --prefer-source --no-interaction

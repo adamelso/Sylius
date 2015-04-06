@@ -8,7 +8,7 @@ php:
     - 5.5
 
 env:
-    - TEST_SUITE=1
+    #- TEST_SUITE=1
     - TEST_SUITE=2
 
 matrix:
@@ -40,7 +40,11 @@ before_script:
     - echo "zend.enable_gc = 0" >> ~/.phpenv/versions/$(phpenv version-name)/etc/php.ini
     - echo "memory_limit=4096M" >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
 
-    - export MINK_EXTENSION_PARAMS='base_url=http://localhost:8000/app_test.php'
+#    - sudo sed -i -e "s,/var/www,$(pwd)/web,g" /etc/apache2/sites-available/default
+#    - sudo /etc/init.d/apache2 restart
+
+    - export BEHAT_PARAMS='{ "sessions": { "default": { "symfony2": null }, "javascript": { "selenium2": { "wd_host": "http://127.0.0.1:4444/wd/hub" } } }, "base_url": "http://localhost:8000/app_test.php/", "browser_name": "firefox", "show_auto": false }
+
     - composer self-update
     - composer install --prefer-source --no-interaction
     - composer require doctrine/mongodb-odm="1.0.*@dev" --no-update

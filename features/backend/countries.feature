@@ -69,7 +69,7 @@ Feature: Countries and provinces
     @javascript
     Scenario: Creating new country with provinces
         Given I am on the country creation page
-         When I click "en_US"
+         When I click "En_us"
           And I fill in "Name" with "Poland"
           And I fill in "ISO name" with "PL"
           And I click "Add province"

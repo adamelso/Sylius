@@ -16,6 +16,7 @@ init:
     - SET ANSICON=121x90 (121x90)
     - SET HOME=c:%HOMEPATH%
     - SET SYLIUS_CACHE_DIR=%HOME%\.sylius-cache
+    - SET USE_PHP_VERSION=5.5.9
     #- SET SYLIUS_BUILD_DIR=appveyor\build-output
 
 cache:
@@ -31,8 +32,8 @@ services:
 install:
     - IF EXIST c:\php (SET PHP=0) ELSE (mkdir c:\php)
     - cd c:\php
-    - IF %PHP%==1 appveyor DownloadFile http://phpdev.toolsforresearch.com/php-5.5.9-nts-Win32-VC11-x86.zip
-    - IF %PHP%==1 7z x php-5.5.30-nts-Win32-VC11-x86.zip -y > 7z.log
+    - IF %PHP%==1 appveyor DownloadFile http://phpdev.toolsforresearch.com/php-%USE_PHP_VERSION%-nts-Win32-VC11-x86.zip
+    - IF %PHP%==1 7z x php-%USE_PHP_VERSION%-nts-Win32-VC11-x86.zip -y > 7z.log
     - IF %PHP%==1 echo @php %%~dp0composer.phar %%* > composer.bat
     - appveyor DownloadFile https://getcomposer.org/composer.phar
     - copy php.ini-production php.ini /Y

@@ -399,7 +399,7 @@ default:
 
     extensions:
         Lakion\Behat\MinkDebugExtension:
-            directory: travis/build-output
+            directory: etc/travis/build-output
             clean_start: false
         Behat\MinkExtension:
             sessions:

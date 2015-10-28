@@ -1,7 +1,7 @@
 build: false
 shallow_clone: true
 platform: x86
-clone_folder: '%HOMEDRIVE%\projects\sylius'
+clone_folder: c:\projects\sylius
 
 environment:
     matrix:
@@ -9,17 +9,17 @@ environment:
         - PHP_EXT: 0
 
 init:
-    - SET PATH=%HOMEDRIVE%\php;%PATH%
+    - SET PATH=c:\php;%PATH%
     - SET COMPOSER_NO_INTERACTION=1
     #- SET SYMFONY_DEPRECATIONS_HELPER=strict
     - SET PHP=1
     - SET ANSICON=121x90 (121x90)
-    - SET HOME=%HOMEDRIVE%%HOMEPATH%
+    - SET HOME=c:%HOMEPATH%
     - SET SYLIUS_CACHE_DIR=%HOME%\.sylius-cache
     #- SET SYLIUS_BUILD_DIR=appveyor\build-output
 
 cache:
-    - '%HOMEDRIVE%\php -> appveyor.yml'
+    - c:\php -> appveyor.yml
     - '%LOCALAPPDATA%\Composer -> composer.lock'
     - .phpunit -> phpunit
     - '%SYLIUS_CACHE_DIR% -> appveyor.yml'
@@ -29,8 +29,8 @@ services:
 
 
 install:
-    - IF EXIST %HOMEDRIVE%\php (SET PHP=0) ELSE (mkdir %HOMEDRIVE%\php)
-    - cd %HOMEDRIVE%\php
+    - IF EXIST c:\php (SET PHP=0) ELSE (mkdir c:\php)
+    - cd c:\php
     #- IF %PHP%==1 appveyor DownloadFile http://windows.php.net/downloads/releases/archives/php-5.6.11-nts-Win32-VC11-x86.zip
     #- IF %PHP%==1 7z x php-5.6.11-nts-Win32-VC11-x86.zip -y > 7z.log
     - IF %PHP%==1 appveyor DownloadFile http://phinx.s3.amazonaws.com/php55/php-5.5.7-nts-Win32-VC11-x86.zip
@@ -49,7 +49,7 @@ install:
     - IF %PHP_EXT%==1 echo extension=php_intl.dll >> php.ini
     - IF %PHP_EXT%==1 echo extension=php_fileinfo.dll >> php.ini
     - IF %PHP_EXT%==1 echo extension=php_pdo_sqlite.dll >> php.ini
-    - cd %HOMEDRIVE%\projects\sylius
+    - cd c:\projects\sylius
     - IF %APPVEYOR_REPO_BRANCH%==master (SET COMPOSER_ROOT_VERSION=dev-master) ELSE (SET COMPOSER_ROOT_VERSION=%APPVEYOR_REPO_BRANCH%.x-dev)
     - copy app\config\parameters.yml.dist app\config\parameters.yml /Y
     - composer install --prefer-source --no-progress --ansi
@@ -59,6 +59,6 @@ install:
     #- ps: Start-Process php "app\console server:start"
 
 test_script:
-    - cd %HOMEDRIVE%\projects\sylius
+    - cd c:\projects\sylius
     - bin\phpspec.bat run --format=pretty
     - bin\behat.bat --stop-on-failure

@@ -3,7 +3,7 @@ language: php
 env:
     global:
         - SYLIUS_CACHE_DIR=$HOME/.sylius-cache
-        - SYLIUS_BUILD_DIR=travis/build-output
+        - SYLIUS_BUILD_DIR=etc/travis/build-output
 
 cache:
     directories:
@@ -47,12 +47,12 @@ before_install:
 
     - composer self-update
 
-    - if [ $TRAVIS_PHP_VERSION != "7.0" ] && [ $TEST_SUITE = 1 ]; then travis/prepare/prepare-mongodb; fi
-    - if [ $TRAVIS_PHP_VERSION == "7.0" ] && [ $TEST_SUITE = 1 ]; then travis/prepare/prepare-phpspec-php7; fi
+    - if [ $TRAVIS_PHP_VERSION != "7.0" ] && [ $TEST_SUITE = 1 ]; then etc/travis/prepare/prepare-mongodb; fi
+    - if [ $TRAVIS_PHP_VERSION == "7.0" ] && [ $TEST_SUITE = 1 ]; then etc/travis/prepare/prepare-phpspec-php7; fi
 
     - composer install --prefer-source --no-interaction
 
-    - if [ $TEST_SUITE = "javascript" ]; then travis/prepare/prepare-javascript; fi
+    - if [ $TEST_SUITE = "javascript" ]; then etc/travis/prepare/prepare-javascript; fi
 
 before_script:
     - app/console doctrine:database:create --env=test
@@ -65,7 +65,7 @@ before_script:
     - if [ $TEST_SUITE = "javascript" ]; then app/console assetic:dump --env=test; fi
 
 script:
-    - travis/run-tests $TEST_SUITE
+    - etc/travis/run-tests $TEST_SUITE
 
 after_failure:
     - export IMGUR_API_KEY=4907fcd89e761c6b07eeb8292d5a9b2a

@@ -1,7 +1,7 @@
 build: false
 shallow_clone: true
 platform: x86
-clone_folder: %HOMEDRIVE%\projects\sylius
+clone_folder: '%HOMEDRIVE%\projects\sylius'
 
 environment:
     matrix:
@@ -19,10 +19,10 @@ init:
     #- SET SYLIUS_BUILD_DIR=appveyor\build-output
 
 cache:
-    - %HOMEDRIVE%\php -> appveyor.yml
+    - '%HOMEDRIVE%\php -> appveyor.yml'
     - '%LOCALAPPDATA%\Composer -> composer.lock'
     - .phpunit -> phpunit
-    - %SYLIUS_CACHE_DIR% -> appveyor.yml
+    - '%SYLIUS_CACHE_DIR% -> appveyor.yml'
 
 services:
     - mysql

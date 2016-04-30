@@ -56,10 +56,10 @@ class ServiceRegistry implements ServiceRegistryInterface
     /**
      * {@inheritdoc}
      */
-    public function register($identifier, $service)
+    public function register($name, $service)
     {
-        if ($this->has($identifier)) {
-            throw new ExistingServiceException($this->context, $identifier);
+        if ($this->has($name)) {
+            throw new ExistingServiceException($this->context, $name);
         }
 
         if (!is_object($service)) {
@@ -72,7 +72,7 @@ class ServiceRegistry implements ServiceRegistryInterface
             );
         }
 
-        $this->services[$identifier] = $service;
+        $this->services[$name] = $service;
     }
 
     /**

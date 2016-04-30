@@ -14,6 +14,7 @@ namespace Sylius\Bundle\FlowBundle\Process;
 use Sylius\Bundle\FlowBundle\Process\Coordinator\InvalidArgumentException;
 use Sylius\Bundle\FlowBundle\Process\Step\StepInterface;
 use Sylius\Bundle\FlowBundle\Validator\ProcessValidatorInterface;
+use Sylius\Component\Registry\ServiceRegistryInterface;
 
 /**
  * Base class for process.
@@ -32,16 +33,9 @@ class Process implements ProcessInterface
     /**
      * Steps.
      *
-     * @var StepInterface[]
+     * @var StepRegistry
      */
-    protected $steps = [];
-
-    /**
-     * Ordered steps.
-     *
-     * @var StepInterface[]
-     */
-    protected $orderedSteps = [];
+    protected $stepsRegistry;
 
     /**
      * @var ProcessValidatorInterface
@@ -90,6 +84,12 @@ class Process implements ProcessInterface
      */
     protected $redirectParams = [];
 
+    public function __construct()
+    {
+        // @todo Move out of constructor
+        $this->stepsRegistry = new StepRegistry();
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -111,7 +111,7 @@ class Process implements ProcessInterface
      */
     public function getSteps()
     {
-        return $this->steps;
+        return $this->stepsRegistry->all();
     }
 
     /**
@@ -129,7 +129,7 @@ class Process implements ProcessInterface
      */
     public function getOrderedSteps()
     {
-        return $this->orderedSteps;
+        return $this->stepsRegistry->getPositionedSteps();
     }
 
     /**
@@ -137,11 +137,11 @@ class Process implements ProcessInterface
      */
     public function getStepByIndex($index)
     {
-        if (!isset($this->orderedSteps[$index])) {
+        if (! $step = $this->stepsRegistry->getStepAtPosition($index)) {
             throw new InvalidArgumentException(sprintf('Step with index %d. does not exist', $index));
         }
 
-        return $this->orderedSteps[$index];
+        return $step;
     }
 
     /**
@@ -149,11 +149,11 @@ class Process implements ProcessInterface
      */
     public function getStepByName($name)
     {
-        if (!$this->hasStep($name)) {
+        if (!$this->stepsRegistry->has($name)) {
             throw new InvalidArgumentException(sprintf('Step with name "%s" does not exist', $name));
         }
 
-        return $this->steps[$name];
+        return $this->stepsRegistry[$name];
     }
 
     /**
@@ -161,7 +161,7 @@ class Process implements ProcessInterface
      */
     public function getFirstStep()
     {
-        return $this->getStepByIndex(0);
+        return $this->stepsRegistry->getFirstStep();
     }
 
     /**
@@ -169,7 +169,7 @@ class Process implements ProcessInterface
      */
     public function getLastStep()
     {
-        return $this->getStepByIndex($this->countSteps() - 1);
+        return $this->stepsRegistry->getLastStep();
     }
 
     /**
@@ -177,7 +177,7 @@ class Process implements ProcessInterface
      */
     public function countSteps()
     {
-        return count($this->steps);
+        return count($this->stepsRegistry);
     }
 
     /**
@@ -193,7 +193,7 @@ class Process implements ProcessInterface
             $step->setName($name);
         }
 
-        $this->steps[$name] = $this->orderedSteps[] = $step;
+        $this->stepsRegistry->register($name, $step);
     }
 
     /**
@@ -205,10 +205,7 @@ class Process implements ProcessInterface
             throw new InvalidArgumentException(sprintf('Step with name "%s" does not exist', $name));
         }
 
-        $index = array_search($this->steps[$name], $this->orderedSteps);
-
-        unset($this->steps[$name], $this->orderedSteps[$index]);
-        $this->orderedSteps = array_values($this->orderedSteps); //keep sequential index intact
+        $this->stepsRegistry->unregister($name);
     }
 
     /**
@@ -216,7 +213,7 @@ class Process implements ProcessInterface
      */
     public function hasStep($name)
     {
-        return isset($this->steps[$name]);
+        return isset($this->stepsRegistry[$name]);
     }
 
     /**

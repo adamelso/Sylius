@@ -22,13 +22,13 @@ interface ServiceRegistryInterface
     public function all();
 
     /**
-     * @param string $identifier
+     * @param string $name
      * @param object $service
      *
      * @throws ExistingServiceException
      * @throws \InvalidArgumentException
      */
-    public function register($identifier, $service);
+    public function register($name, $service);
 
     /**
      * @param string $identifier
